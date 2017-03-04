@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" href="./public/bootstrap.min.css">
+	<link rel="stylesheet" href="./public/main.css">
+	<script src="./public/jquery.min.js"></script>
+	<script src="./public/bootstrap.min.js"></script>
+	<script src="./public/d3.min.js"></script>
+	<script src="./public/main.js"></script>
+</head>
+<html>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Movie101</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="data.html">movies</a></li>
+                        <li><a href="data.html">actors</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container">
+	<div class="jumbotron">
+		<h1>Movie101</h1>
+		<p>This is a movie review website. It will store information about a variety of movies and both regular users and critics can write reviews. The aspects of the movie review data will include information such as the release date, director, and actors in the movie. Movies will also have a list of comments, which are contributed by either the regular or critic accounts. Users can have accounts, which can be used to write reviews, comments or store a list of their favourite movies.
+		</br>
+		</br>
+		There will be three types of users in our database: regular users who can contribute reviews, professional critics who can contribute critic reviews, and administrators who can approve or remove reviews. Once posted, a review can be viewed by all users on the website. A regular user nor a critic may alter a review posted by a non-administrator account. The regular and professional critic users may post comments.
+</p>
+		<p></p>
+		<p>
+			<a class="btn btn-lg btn-primary" href="data.html" role="button">Explore Movies &raquo;</a>
+		</p>
+	</div>
+</div>
+
+
+</body>
+</html>
