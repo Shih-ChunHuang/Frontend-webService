@@ -11,7 +11,7 @@ $(function () {
 
                 $.ajax({
                   dataType: "json",
-                  url: "http://localhost:3000/posts",
+                  url: "http://localhost:3000/movie",
                   success: function(data){
 
                     console.log("testing inside success");
@@ -28,7 +28,7 @@ $(function () {
 
                  $.ajax({
                   dataType: "json",
-                  url: "http://localhost:3000/comments",
+                  url: "http://localhost:3000/actor",
                   success: function(data){
 
                     console.log("testing inside success");
