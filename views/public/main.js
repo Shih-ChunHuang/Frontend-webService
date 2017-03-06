@@ -7,7 +7,7 @@ $(function () {
             var id = $("#datasetId").val();
             console.log(id);
 
-            if (id == "movies"){
+            if (id == "movie"){
 
                 $.ajax({
                   dataType: "json",
@@ -24,7 +24,7 @@ $(function () {
                   }
 
                 });
-             }else if (id == "actors"){
+             }else if (id == "actor"){
 
                  $.ajax({
                   dataType: "json",
