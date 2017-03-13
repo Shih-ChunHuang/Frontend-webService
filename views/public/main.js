@@ -1,20 +1,15 @@
 $(function () {
 
-    $("#datasetGet").click(function (e) {
+    $("#movie-datasetGet").click(function (e) {
             e.preventDefault();
             console.log("testing");
-
-            var id = $("#datasetId").val();
-            console.log(id);
-
-            if (id == "movie"){
 
                 $.ajax({
                   dataType: "json",
                   url: "http://localhost:3000/movie",
                   success: function(data){
 
-                    console.log("testing inside success");
+                    console.log("testing inside ajax success");
                     console.log(data);
 
                     var data_string = JSON.stringify(data);
@@ -24,14 +19,21 @@ $(function () {
                   }
 
                 });
-             }else if (id == "actor"){
+             
+             
 
-                 $.ajax({
+        });
+
+        $("#actor-datasetGet").click(function (e) {
+            e.preventDefault();
+            console.log("testing");
+
+                $.ajax({
                   dataType: "json",
                   url: "http://localhost:3000/actor",
                   success: function(data){
 
-                    console.log("testing inside success");
+                    console.log("testing inside ajax success");
                     console.log(data);
 
                     var data_string = JSON.stringify(data);
@@ -41,13 +43,59 @@ $(function () {
                   }
 
                 });
-
-
-             }else {
-                alert("Please select one.")
-             }
+             
+             
 
         });
+
+    // $("#movie-datasetGet").click(function (e) {
+    //         e.preventDefault();
+    //         console.log("testing");
+
+    //         var id = $("#datasetId").val();
+    //         console.log(id);
+
+    //         if (id == "movie"){
+
+    //             $.ajax({
+    //               dataType: "json",
+    //               url: "http://localhost:3000/movie",
+    //               success: function(data){
+
+    //                 console.log("testing inside success");
+    //                 console.log(data);
+
+    //                 var data_string = JSON.stringify(data);
+
+    //                  $("#dataDisplay").html(data_string);
+
+    //               }
+
+    //             });
+    //          }else if (id == "actor"){
+
+    //              $.ajax({
+    //               dataType: "json",
+    //               url: "http://localhost:3000/actor",
+    //               success: function(data){
+
+    //                 console.log("testing inside success");
+    //                 console.log(data);
+
+    //                 var data_string = JSON.stringify(data);
+
+    //                  $("#dataDisplay").html(data_string);
+
+    //               }
+
+    //             });
+
+
+    //          }else {
+    //             alert("Please select one.")
+    //          }
+
+    //     });
 
 });
 

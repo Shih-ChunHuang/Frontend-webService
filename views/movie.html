@@ -29,12 +29,12 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Search<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="data.html">movie</a></li>
-                        <li><a href="data.html">actor</a></li>
+                        <li><a href="movie.html">Movie</a></li>
+                        <li><a href="actor.html">Actor</a></li>
                     </ul>
                 </li>
                 
-                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html">Login or Register</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -45,17 +45,22 @@
     <div class="jumbotron">
         <div id="dataset">
             <div class="container form-group">
-                <h1>Database</h1>
-                <div class="form-group col-lg-6">
+                
+                <div class="form-group col-lg-6" style="margin-top: 2em">
+                    <h2><button type="button" class="btn btn-primary" id="movie-datasetGet" style="margin-bottom:2em">Get Movie Table</button></h2>
+
                     <select class="form-control" id="datasetId">
                         <option selected="selected">I want to know about...</option>
-                        <option value="movie">movie</option>
-                        <option value="actor">actor</option>
+                        <option value="q1">Query 1</option>
+                        <option value="q2">Query 2</option>
+                        <option value="q3">Query 3</option>
+                        <option value="q4">Query 4</option>
                     </select>
-                   
+                    <button type="button" class="btn btn-primary" id="queryGet" style="margin-top: 2em">Get Data</button>
+
                 </div>
+
                 
-                <button type="button" class="btn btn-primary" id="datasetGet">Get Data</button>
             </div>
         </div>
     </div>
