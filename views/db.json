@@ -5,15 +5,16 @@
    "ReleaseDate": "2000-09-23",
    "Director": "Boaz Yakin",
    "distributedcompany": "Buena Vista Pictures"
- },
-
-],"MonaLisaSmile":[
+ }
+],
+   
+   "MonaLisaSmile":[
    {
    "Title": "Mona Lisa Smile",
    "ReleaseDate": "2003-12-19",
    "Director": "Mike Newell",
    "distributedcompany": "Columbia Pictures"
- },
+ }
  
 ],
 "SavingPrivateRyan":[
@@ -22,9 +23,10 @@
    "ReleaseDate": "1998-07-24",
    "Director": "Steven Spielberg",
    "distributedcompany": "DreamWorks Pictures"
- },
+ }
  
-],"HarryPotter":[
+],
+"HarryPotter":[
 
 {
    "Title": "Harry Potter",
@@ -34,7 +36,8 @@
  }
 
 
-],"ComingHome":[
+],
+"ComingHome":[
 
 {
    "Title": "Coming Home",
@@ -77,6 +80,42 @@
    "distributedcompany": "Sony Pictures Classics"
  }
 ],
+  "TomHanks":[
+   {
+   "Name": "Tom Hanks",
+   "Birthday": "1956-07-09",
+   "Nationality": "American"
+ }
+],
+  "GongLi":[
+   {
+   "Name": "Gong Li",
+   "Birthday": "1965-12-31",
+   "Nationality": "Singaporean"
+ }
+],
+
+  "DanielRadcliffe":[
+   {
+   "Name": "Daniel Radcliffe",
+   "Birthday": "1989-07-23",
+   "Nationality": "British"
+ }
+],
+  "EdwardBurns":[
+   {
+   "Name": "Edward Burns",
+   "Birthday": "1968-01-29",
+   "Nationality": "American"
+ }
+],
+  "JuliaRoberts":[
+   {
+   "Name": "Julia Roberts",
+   "Birthday": "1967-10-28",
+   "Nationality": "American"
+ }
+],
   "actor": [
  {
    "Name": "Tom Hanks",
@@ -99,7 +138,7 @@
    "Nationality": "American"
  },
  {
-   "Name": "Julia Roberts ",
+   "Name": "Julia Roberts",
    "Birthday": "1967-10-28",
    "Nationality": "American"
  }

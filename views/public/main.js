@@ -68,13 +68,13 @@ $(function () {
                     dataType: "json",
                     url: "http://localhost:3000/" + str,
                     success: function(data){
-                        console.log("testing inside ajax success");
-                        console.log(data["Title"]);
+                        // console.log("testing inside ajax success");
+                        // console.log(data["Title"]);
 
-                        var openW = window.open("");
-                        openW.document.write(JSON.stringify(data));
-                        openW.document.title = data["Title"];
-                    
+                        // var openW = window.open("");
+                        // openW.document.write(JSON.stringify(data));
+                        // openW.document.title = data["Title"];
+                        generateTableMovie(data);
                   }
 
                 });
@@ -153,6 +153,38 @@ $(function () {
             .selectAll("tr")
             .data(data).enter()
             .append("tr")
+            .on("click", function(d) { 
+
+             
+                console.log(d);
+                console.log(d['Name']);
+
+                // removing white spaces
+                str = d['Name'].replace(/\s+/g, ''); 
+            
+                console.log("http://localhost:3000/" + str);
+
+
+               
+                   $.ajax({
+                    dataType: "json",
+                    url: "http://localhost:3000/" + str,
+                    success: function(data){
+                        // console.log("testing inside ajax success");
+                        // console.log(data['Name']);
+
+                        // var w = window.open("");
+                        // w.document.write(JSON.stringify(data));
+                        // w.document.title = data['Name'];
+                    
+                        generateTableActor(data);
+                  }
+
+                });
+                 
+
+
+             })
             .selectAll("td")
             .data(function (row, i) {
                 return columns.map(function (c) {
