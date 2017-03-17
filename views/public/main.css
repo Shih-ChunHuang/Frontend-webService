@@ -19,11 +19,19 @@ th {
     text-align: left;
 }
 
-th, td {
+tr:hover {
+  /*background-color: #ffa;*/
+  background-color: #a8e9ff;
+}
+
+
+td,th{
     padding: 0 1em 0.5ex 0;
     border-style:solid;
     padding:10px;
+    /*background-color: #ffa;*/
 }
+
 
 th.center, td.center {
     text-align: center;
