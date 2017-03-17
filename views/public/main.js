@@ -14,15 +14,9 @@ $(function () {
 
                     generateTableMovie(data);
 
-                    // var data_string = JSON.stringify(data);
-
-                    // $("#dataDisplay").html(data_string);
-
                   }
 
-                });
-             
-             
+                });           
 
         });
 
@@ -57,6 +51,37 @@ $(function () {
             .selectAll("tr")
             .data(data).enter()
             .append("tr")
+            .on("click", function(d) { 
+
+             
+                console.log(d);
+                console.log(d['Title']);
+
+                // removing white spaces
+                str = d['Title'].replace(/\s+/g, ''); 
+            
+                console.log("http://localhost:3000/" + str);
+
+
+               
+                   $.ajax({
+                    dataType: "json",
+                    url: "http://localhost:3000/" + str,
+                    success: function(data){
+                        console.log("testing inside ajax success");
+                        console.log(data["Title"]);
+
+                        var openW = window.open("");
+                        openW.document.write(JSON.stringify(data));
+                        openW.document.title = data["Title"];
+                    
+                  }
+
+                });
+                 
+
+
+             })
             .selectAll("td")
             .data(function (row, i) {
                 return columns.map(function (c) {
@@ -91,18 +116,10 @@ $(function () {
 
                     generateTableActor(data);
 
-
-
-                    // var data_string = JSON.stringify(data);
-
-                    //  $("#dataDisplay").html(data_string);
-
                   }
 
                 });
              
-             
-
         });
 
         function generateTableActor(data) {
@@ -155,6 +172,10 @@ $(function () {
                 return d["cl"]
             });
         }
+
+
+
+       
 
     // $("#movie-datasetGet").click(function (e) {
     //         e.preventDefault();

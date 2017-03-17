@@ -1,4 +1,50 @@
 {
+  "RemembertheTitans":[
+   {
+   "Title": "Remember the Titans",
+   "ReleaseDate": "2000-09-23",
+   "Director": "Boaz Yakin",
+   "distributedcompany": "Buena Vista Pictures"
+ },
+
+],"MonaLisaSmile":[
+   {
+   "Title": "Mona Lisa Smile",
+   "ReleaseDate": "2003-12-19",
+   "Director": "Mike Newell",
+   "distributedcompany": "Columbia Pictures"
+ },
+ 
+],
+"SavingPrivateRyan":[
+   {
+   "Title": "Saving Private Ryan",
+   "ReleaseDate": "1998-07-24",
+   "Director": "Steven Spielberg",
+   "distributedcompany": "DreamWorks Pictures"
+ },
+ 
+],"HarryPotter":[
+
+{
+   "Title": "Harry Potter",
+   "ReleaseDate": "2001-11-04",
+   "Director": "Chris Columbus",
+   "distributedcompany": "Warner Bros. Pictures"
+ }
+
+
+],"ComingHome":[
+
+{
+   "Title": "Coming Home",
+   "ReleaseDate": "2014-05-16",
+   "Director": "Zhang Yimou",
+   "distributedcompany": "Sony Pictures Classics"
+ }
+
+
+],
   "movie": [
  {
    "Title": "Remember the Titans",
