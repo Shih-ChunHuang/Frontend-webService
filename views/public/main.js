@@ -72,9 +72,10 @@ $(function () {
                         // console.log(data["Title"]);
 
                         // var openW = window.open("");
+                        window.open("singleMovie.html");
                         // openW.document.write(JSON.stringify(data));
                         // openW.document.title = data["Title"];
-                        generateTableMovie(data);
+                        // generateTableMovie(data);
                   }
 
                 });
@@ -174,10 +175,11 @@ $(function () {
                         // console.log(data['Name']);
 
                         // var w = window.open("");
+                        window.open("singleActor.html");
                         // w.document.write(JSON.stringify(data));
                         // w.document.title = data['Name'];
                     
-                        generateTableActor(data);
+                        // generateTableActor(data);
                   }
 
                 });
