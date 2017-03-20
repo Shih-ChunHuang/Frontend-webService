@@ -103,7 +103,7 @@ $(function () {
             });
         }
 
-        $("#n").click(function (e) {
+        $("#actor-datasetGet").click(function (e) {
             e.preventDefault();
             console.log("testing");
 
@@ -166,9 +166,9 @@ $(function () {
                 
                 console.log("http://localhost:3000/" + str);
 
-                
+
                
-                   $.ajax({
+                $.ajax({
                     dataType: "json",
                     url: "http://localhost:3000/" + str,
                     success: function(data){
