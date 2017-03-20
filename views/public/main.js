@@ -159,10 +159,11 @@ $(function () {
              
                 console.log(d);
                 console.log(d['Name']);
+                actorname = d['Name'];
 
                 // removing white spaces
-                str = d['Name'].replace(/\s+/g, ''); 
-            
+                str = actorname.replace(/\s+/g, ''); 
+                
                 console.log("http://localhost:3000/" + str);
 
 
@@ -173,9 +174,9 @@ $(function () {
                     success: function(data){
                         // console.log("testing inside ajax success");
                         // console.log(data['Name']);
-
+                        params = 'actorname=' + actorname;
                         // var w = window.open("");
-                        window.open("singleActor.html");
+                        window.open("singleActor.html" + '?' + params);
                         // w.document.write(JSON.stringify(data));
                         // w.document.title = data['Name'];
                     
