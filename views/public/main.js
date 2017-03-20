@@ -3,10 +3,10 @@ $(function () {
     $("#movie-datasetGet").click(function (e) {
             e.preventDefault();
             console.log("testing");
-
+                // askldjfklasjdfklajsdf
                 $.ajax({
                   dataType: "json",
-                  url: "http://localhost:3000/movie",
+                  url: "http://localhost:8080/allmovies",
                   success: function(data){
 
                     console.log("testing inside ajax success");
@@ -56,31 +56,25 @@ $(function () {
              
                 console.log(d);
                 console.log(d['Title']);
+                movietitle = d['Title'];
 
                 // removing white spaces
-                str = d['Title'].replace(/\s+/g, ''); 
-            
-                console.log("http://localhost:3000/" + str);
+                str = movietitle.replace(/\s+/g, ''); 
+                
+                console.log("http://localhost:8080/" + str);
 
-
-               
                    $.ajax({
                     dataType: "json",
-                    url: "http://localhost:3000/" + str,
+                    url: "http://localhost:8080/" + str,
                     success: function(data){
-                        // console.log("testing inside ajax success");
-                        // console.log(data["Title"]);
-
-                        // var openW = window.open("");
-                        window.open("singleMovie.html");
-                        // openW.document.write(JSON.stringify(data));
-                        // openW.document.title = data["Title"];
-                        // generateTableMovie(data);
+                       
+                        params = 'movietitle=' + movietitle;
+                        
+                        window.open("singleMovie.html" + '?' + params);
+                        
                   }
 
                 });
-                 
-
 
              })
             .selectAll("td")
@@ -109,7 +103,7 @@ $(function () {
 
                 $.ajax({
                   dataType: "json",
-                  url: "http://localhost:3000/actor",
+                  url: "http://localhost:8080/allactors",
                   success: function(data){
 
                     console.log("testing inside ajax success");
@@ -164,23 +158,19 @@ $(function () {
                 // removing white spaces
                 str = actorname.replace(/\s+/g, ''); 
                 
-                console.log("http://localhost:3000/" + str);
+                console.log("http://localhost:8080/" + str);
 
 
                
                 $.ajax({
                     dataType: "json",
-                    url: "http://localhost:3000/" + str,
+                    url: "http://localhost:8080/" + str,
                     success: function(data){
-                        // console.log("testing inside ajax success");
-                        // console.log(data['Name']);
+                        
                         params = 'actorname=' + actorname;
-                        // var w = window.open("");
+                      
                         window.open("singleActor.html" + '?' + params);
-                        // w.document.write(JSON.stringify(data));
-                        // w.document.title = data['Name'];
                     
-                        // generateTableActor(data);
                   }
 
                 });

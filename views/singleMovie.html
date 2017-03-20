@@ -40,10 +40,87 @@
 </nav>
 
 <div class="container">
-    <div class="jumbotron">
-    <div class="container form-group myBox myBoxColor" id="singleMovie-dataDisplay"></div>
-    </div>
-</div>
+        <div class="jumbotron">
+            <div class="container form-group myBox myBoxColor" id="singleMovie-dataDisplay">
 
+
+
+                <div class="jumbotron">
+                  <h1 id='movie-title'></h1>
+                  <p id='movie-releasedate'></p>
+                  <p id='movie-director'></p>
+                  <p id='movie-distributedcompany'></p>
+
+                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        $(document).ready(function() {
+
+            var movieTitle = parseMoiveTitle();
+            getMoiveData(movieTitle);
+            
+
+        });
+
+        function parseMoiveTitle() {
+            var query = window.location.search.substring(1);
+            console.log(query); 
+            // movietitle=Remember%20the%20Titans
+
+            var movietitle = query.split('=')[1];
+            console.log(movietitle);
+            // Remember%20the%20Titans
+
+            var movietitle = movietitle.replace('%20','');//remove first %20
+            var movietitle = movietitle.replace('%20','');//remove second %20
+            console.log(movietitle);
+           
+            return movietitle;
+        }
+
+        function getMoiveData(movieTitle) {
+            console.log(movieTitle);
+
+            $.ajax({
+                dataType: 'json',
+                url: 'http://localhost:3000/' + movieTitle,
+                success: function(data) {
+                    console.log(data);
+                    setDataFields(data);
+                }
+            })
+        }
+
+        function setDataFields(data) {
+            // data is an array
+            data = data[0];
+
+            var title = data["Title"];
+            var releasedate = data['Releasedate'];
+            var director = data['Director'];
+            var distributedcompany = data['Distributedcompany'];
+
+            var titleField = document.getElementById('movie-title');
+            var releasedateField = document.getElementById('movie-releasedate');
+            var directorField = document.getElementById('movie-director');
+            var distributedcompanyField = document.getElementById('movie-distributedcompany');
+
+            titleField.innerHTML = title;
+            releasedateField.innerHTML = "Release Date: " + releasedate;
+            directorField.innerHTML = "Director: " + director;
+            distributedcompanyField.innerHTML = "Distributed Company: " + distributedcompany;
+
+         }
+
+
+    </script>
 </body>
 </html>
