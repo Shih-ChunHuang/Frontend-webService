@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Login</title>
+    <title>Register</title>
 
     <!-- Bootstrap -->
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./public/login.css">
+    <link rel="stylesheet" type="text/css" href="./public/register.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -64,10 +64,10 @@
             <div class="panel-heading">
               <div class="row">
                 <div class="col-xs-6">
-                  <a href="#" class="active" id="login-form-link">Login</a>
+                  <a href="login.html" id="login-form-link">Login</a>
                 </div>
                 <div class="col-xs-6">
-                  <a href="register.html" id="register-form-link">Register</a>
+                  <a href="#" class="active" id="register-form-link">Register</a>
                 </div>
               </div>
               <hr>
@@ -83,12 +83,8 @@
                     </div>
                     <div class="form-group">
                       <div class="row">
-                        <div class="col-sm-6">
-                          <input type="submit" name="login-submit" id="login-user-submit" tabindex="4" class="form-control btn btn-login" value="Log In User">
-                        </div>
-
-                        <div class="col-sm-6">
-                          <input type="submit" name="login-submit" id="login-admin-submit" tabindex="4" class="form-control btn btn-login" value="Log In Admin">
+                        <div class="col-sm-12">
+                          <input type="submit" name="login-submit" id="user-register" tabindex="4" class="form-control btn btn-login" value="Register">
                         </div>
                       </div>
                     </div>
@@ -128,48 +124,34 @@
     <script>
       $(document).ready(function() {
         
-        $('#login-user-submit').click(function() {
+        $('#user-register').click(function() {
             var username = document.getElementsByClassName('form-control username')[0].value;
             var password = document.getElementsByClassName('form-control password')[0].value;
             console.log('username: ' + username);
             console.log('password: ' + password);
             var cred = [username, password];
 
-            var testPath = "login";
+            var testPath = "register";
 
 
             $.ajax({
-              // Should be POST when we contact actual backend
-              type: "GET",
+              type: "POST",
               url: "http://localhost:3000/" + testPath,
-              //data: JSON.stringify(cred),
-              //contentType: "application/json; charset=utf-8",
-              //dataType: "json"
+              data: JSON.stringify(cred),
+              contentType: "application/json; charset=utf-8",
+              dataType: "json"
             }).then(function(data) {
-              var valid = data['valid'];
+              // Here, since we've just registered, we should be taken to the user action panel, as we've already "logged in"
+              // In our POST, we are updating the database with a new username/password combination
 
-              console.log(valid);
-
-              if (valid) {
-                // Take path into user account options
-                console.log("Valid");
-
-            }
+            });
               
 
 
             });
-        });
-
-        $('#login-admin-submit').click(function() {
-            var username = document.getElementsByClassName('form-control username')[0].value;
-            var password = document.getElementsByClassName('form-control password')[0].value;
-            console.log('username: ' + username);
-            console.log('password: ' + password);
-        });
-
-
       });
+
+
 
     </script>
 

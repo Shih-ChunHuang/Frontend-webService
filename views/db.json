@@ -1,355 +1,351 @@
 {
-  "RemembertheTitans":[
-   {
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23",
-   "Director": "Boaz Yakin",
-   "distributedcompany": "Buena Vista Pictures"
- }
-],
-   
-   "MonaLisaSmile":[
-   {
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19",
-   "Director": "Mike Newell",
-   "distributedcompany": "Columbia Pictures"
- }
- 
-],
-"SavingPrivateRyan":[
-   {
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24",
-   "Director": "Steven Spielberg",
-   "distributedcompany": "DreamWorks Pictures"
- }
- 
-],
-"HarryPotter":[
-
-{
-   "Title": "Harry Potter",
-   "ReleaseDate": "2001-11-04",
-   "Director": "Chris Columbus",
-   "distributedcompany": "Warner Bros. Pictures"
- }
-
-
-],
-"ComingHome":[
-
-{
-   "Title": "Coming Home",
-   "ReleaseDate": "2014-05-16",
-   "Director": "Zhang Yimou",
-   "distributedcompany": "Sony Pictures Classics"
- }
-
-
-],
+  "RemembertheTitans": [
+    {
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23",
+      "Director": "Boaz Yakin",
+      "distributedcompany": "Buena Vista Pictures"
+    }
+  ],
+  "MonaLisaSmile": [
+    {
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19",
+      "Director": "Mike Newell",
+      "distributedcompany": "Columbia Pictures"
+    }
+  ],
+  "SavingPrivateRyan": [
+    {
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24",
+      "Director": "Steven Spielberg",
+      "distributedcompany": "DreamWorks Pictures"
+    }
+  ],
+  "HarryPotter": [
+    {
+      "Title": "Harry Potter",
+      "ReleaseDate": "2001-11-04",
+      "Director": "Chris Columbus",
+      "distributedcompany": "Warner Bros. Pictures"
+    }
+  ],
+  "ComingHome": [
+    {
+      "Title": "Coming Home",
+      "ReleaseDate": "2014-05-16",
+      "Director": "Zhang Yimou",
+      "distributedcompany": "Sony Pictures Classics"
+    }
+  ],
   "movie": [
- {
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23",
-   "Director": "Boaz Yakin",
-   "distributedcompany": "Buena Vista Pictures"
- },
- {
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19",
-   "Director": "Mike Newell",
-   "distributedcompany": "Columbia Pictures"
- },
- {
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24",
-   "Director": "Steven Spielberg",
-   "distributedcompany": "DreamWorks Pictures"
- },
- {
-   "Title": "Harry Potter",
-   "ReleaseDate": "2001-11-04",
-   "Director": "Chris Columbus",
-   "distributedcompany": "Warner Bros. Pictures"
- },
- {
-   "Title": "Coming Home",
-   "ReleaseDate": "2014-05-16",
-   "Director": "Zhang Yimou",
-   "distributedcompany": "Sony Pictures Classics"
- }
-],
-  "TomHanks":[
-   {
-   "Name": "Tom Hanks",
-   "Birthday": "1956-07-09",
-   "Nationality": "American"
- }
-],
-  "GongLi":[
-   {
-   "Name": "Gong Li",
-   "Birthday": "1965-12-31",
-   "Nationality": "Singaporean"
- }
-],
-
-  "DanielRadcliffe":[
-   {
-   "Name": "Daniel Radcliffe",
-   "Birthday": "1989-07-23",
-   "Nationality": "British"
- }
-],
-  "EdwardBurns":[
-   {
-   "Name": "Edward Burns",
-   "Birthday": "1968-01-29",
-   "Nationality": "American"
- }
-],
-  "JuliaRoberts":[
-   {
-   "Name": "Julia Roberts",
-   "Birthday": "1967-10-28",
-   "Nationality": "American"
- }
-],
+    {
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23",
+      "Director": "Boaz Yakin",
+      "distributedcompany": "Buena Vista Pictures"
+    },
+    {
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19",
+      "Director": "Mike Newell",
+      "distributedcompany": "Columbia Pictures"
+    },
+    {
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24",
+      "Director": "Steven Spielberg",
+      "distributedcompany": "DreamWorks Pictures"
+    },
+    {
+      "Title": "Harry Potter",
+      "ReleaseDate": "2001-11-04",
+      "Director": "Chris Columbus",
+      "distributedcompany": "Warner Bros. Pictures"
+    },
+    {
+      "Title": "Coming Home",
+      "ReleaseDate": "2014-05-16",
+      "Director": "Zhang Yimou",
+      "distributedcompany": "Sony Pictures Classics"
+    }
+  ],
+  "TomHanks": [
+    {
+      "Name": "Tom Hanks",
+      "Birthday": "1956-07-09",
+      "Nationality": "American"
+    }
+  ],
+  "GongLi": [
+    {
+      "Name": "Gong Li",
+      "Birthday": "1965-12-31",
+      "Nationality": "Singaporean"
+    }
+  ],
+  "DanielRadcliffe": [
+    {
+      "Name": "Daniel Radcliffe",
+      "Birthday": "1989-07-23",
+      "Nationality": "British"
+    }
+  ],
+  "EdwardBurns": [
+    {
+      "Name": "Edward Burns",
+      "Birthday": "1968-01-29",
+      "Nationality": "American"
+    }
+  ],
+  "JuliaRoberts": [
+    {
+      "Name": "Julia Roberts",
+      "Birthday": "1967-10-28",
+      "Nationality": "American"
+    }
+  ],
   "actor": [
- {
-   "Name": "Tom Hanks",
-   "Birthday": "1956-07-09",
-   "Nationality": "American"
- },
- {
-   "Name": "Gong Li",
-   "Birthday": "1965-12-31",
-   "Nationality": "Singaporean"
- },
- {
-   "Name": "Daniel Radcliffe",
-   "Birthday": "1989-07-23",
-   "Nationality": "British"
- },
- {
-   "Name": "Edward Burns",
-   "Birthday": "1968-01-29",
-   "Nationality": "American"
- },
- {
-   "Name": "Julia Roberts",
-   "Birthday": "1967-10-28",
-   "Nationality": "American"
- }
-],
-  "acts_in" : [
- {
-   "Title": "Harry Potter",
-   "ReleaseDate": "2001-11-04",
-   "Name": "Daniel Radcliffe",
-   "Birthday": "1989-07-23"
- },
- {
-   "Title": "Coming Home",
-   "ReleaseDate": "2014-05-16",
-   "Name": "Gong Li",
-   "Birthday": "1965-12-31"
- },
- {
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24",
-   "Name": "Edward Burns",
-   "Birthday": "1968-01-29"
- },
- {
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19",
-   "Name": "Julia Roberts ",
-   "Birthday": "1967-10-28"
- },
- {
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24",
-   "Name": "Tom Hanks",
-   "Birthday": "1956-07-09"
- }
-],
+    {
+      "Name": "Tom Hanks",
+      "Birthday": "1956-07-09",
+      "Nationality": "American"
+    },
+    {
+      "Name": "Gong Li",
+      "Birthday": "1965-12-31",
+      "Nationality": "Singaporean"
+    },
+    {
+      "Name": "Daniel Radcliffe",
+      "Birthday": "1989-07-23",
+      "Nationality": "British"
+    },
+    {
+      "Name": "Edward Burns",
+      "Birthday": "1968-01-29",
+      "Nationality": "American"
+    },
+    {
+      "Name": "Julia Roberts",
+      "Birthday": "1967-10-28",
+      "Nationality": "American"
+    }
+  ],
+  "acts_in": [
+    {
+      "Title": "Harry Potter",
+      "ReleaseDate": "2001-11-04",
+      "Name": "Daniel Radcliffe",
+      "Birthday": "1989-07-23"
+    },
+    {
+      "Title": "Coming Home",
+      "ReleaseDate": "2014-05-16",
+      "Name": "Gong Li",
+      "Birthday": "1965-12-31"
+    },
+    {
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24",
+      "Name": "Edward Burns",
+      "Birthday": "1968-01-29"
+    },
+    {
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19",
+      "Name": "Julia Roberts ",
+      "Birthday": "1967-10-28"
+    },
+    {
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24",
+      "Name": "Tom Hanks",
+      "Birthday": "1956-07-09"
+    }
+  ],
   "users": [
- {
-   "AccountName": "foobar",
-   "Email": "foo_bar@gmail.com",
-   "Birthday": "1989-02-15"
- },
- {
-   "AccountName": "helloworld",
-   "Email": "helloworld123@hotmail.com",
-   "Birthday": "1992-08-18"
- },
- {
-   "AccountName": "deadbeef",
-   "Email": "404notfound@gmail.com",
-   "Birthday": "1995-01-02"
- },
- {
-   "AccountName": "gameofthreads",
-   "Email": "diningphilosophers@hotmail.com",
-   "Birthday": "1986-06-30"
- },
- {
-   "AccountName": "bobbytables",
-   "Email": "xkcd@hotmail.com",
-   "Birthday": "1964-12-24"
- }
-],
+    {
+      "AccountName": "foobar",
+      "Email": "foo_bar@gmail.com",
+      "Birthday": "1989-02-15"
+    },
+    {
+      "AccountName": "helloworld",
+      "Email": "helloworld123@hotmail.com",
+      "Birthday": "1992-08-18"
+    },
+    {
+      "AccountName": "deadbeef",
+      "Email": "404notfound@gmail.com",
+      "Birthday": "1995-01-02"
+    },
+    {
+      "AccountName": "gameofthreads",
+      "Email": "diningphilosophers@hotmail.com",
+      "Birthday": "1986-06-30"
+    },
+    {
+      "AccountName": "bobbytables",
+      "Email": "xkcd@hotmail.com",
+      "Birthday": "1964-12-24"
+    }
+  ],
   "favourite": [
- {
-   "Title": "Coming Home",
-   "ReleaseDate": "2014-05-16",
-   "AccountName": "bobbytables"
- },
- {
-   "Title": "Harry Potter",
-   "ReleaseDate": "2001-11-04",
-   "AccountName": "bobbytables"
- },
- {
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19",
-   "AccountName": "deadbeef"
- },
- {
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24",
-   "AccountName": "foobar"
- },
- {
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23",
-   "AccountName": "helloworld"
- }
-],
+    {
+      "Title": "Coming Home",
+      "ReleaseDate": "2014-05-16",
+      "AccountName": "bobbytables"
+    },
+    {
+      "Title": "Harry Potter",
+      "ReleaseDate": "2001-11-04",
+      "AccountName": "bobbytables"
+    },
+    {
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19",
+      "AccountName": "deadbeef"
+    },
+    {
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24",
+      "AccountName": "foobar"
+    },
+    {
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23",
+      "AccountName": "helloworld"
+    }
+  ],
   "review": [
- {
-   "ID": 1,
-   "PostDate": "2000-10-30",
-   "Text": "The actors did a phenomenal job.",
-   "Rating": 9,
-   "AccountName": "helloworld",
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23"
- },
- {
-   "ID": 2,
-   "PostDate": "2001-02-16",
-   "Text": "I didnt think I would like a movie about football, but it was amazing!",
-   "Rating": 7,
-   "AccountName": "foobar",
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23"
- },
- {
-   "ID": 3,
-   "PostDate": "2012-08-25",
-   "Text": "Watched it in the cinema, watched again at home",
-   "Rating": 8,
-   "AccountName": "foobar",
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24"
- },
- {
-   "ID": 4,
-   "PostDate": "2016-12-12",
-   "Text": "It was ok. I liked the book better.",
-   "Rating": 6,
-   "AccountName": "deadbeef",
-   "Title": "Harry Potter ",
-   "ReleaseDate": "2001-11-04"
- },
- {
-   "ID": 5,
-   "PostDate": "2008-03-25",
-   "Text": "This movie is amazing. I love the way how the director tells the story. As a woman, I was inspired by the plot.",
-   "Rating": 10,
-   "AccountName": "deadbeef",
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19"
- }
-],
+    {
+      "ID": 1,
+      "PostDate": "2000-10-30",
+      "Text": "The actors did a phenomenal job.",
+      "Rating": 9,
+      "AccountName": "helloworld",
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23"
+    },
+    {
+      "ID": 2,
+      "PostDate": "2001-02-16",
+      "Text": "I didnt think I would like a movie about football, but it was amazing!",
+      "Rating": 7,
+      "AccountName": "foobar",
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23"
+    },
+    {
+      "ID": 3,
+      "PostDate": "2012-08-25",
+      "Text": "Watched it in the cinema, watched again at home",
+      "Rating": 8,
+      "AccountName": "foobar",
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24"
+    },
+    {
+      "ID": 4,
+      "PostDate": "2016-12-12",
+      "Text": "It was ok. I liked the book better.",
+      "Rating": 6,
+      "AccountName": "deadbeef",
+      "Title": "Harry Potter ",
+      "ReleaseDate": "2001-11-04"
+    },
+    {
+      "ID": 5,
+      "PostDate": "2008-03-25",
+      "Text": "This movie is amazing. I love the way how the director tells the story. As a woman, I was inspired by the plot.",
+      "Rating": 10,
+      "AccountName": "deadbeef",
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19"
+    }
+  ],
   "comments": [
- {
-   "ID": 1,
-   "PostDate": "2003-03-05",
-   "Text": "hahaha",
-   "Upvotes": 2,
-   "AccountName": "foobar",
-   "Title": "Remember the Titans",
-   "ReleaseDate": "2000-09-23"
- },
- {
-   "ID": 2,
-   "PostDate": "2005-10-03",
-   "Text": "Well,well,well",
-   "Upvotes": 0,
-   "AccountName": "bobbytables",
-   "Title": "Harry Potter ",
-   "ReleaseDate": "2001-11-04"
- },
- {
-   "ID": 3,
-   "PostDate": "2004-01-25",
-   "Text": "omg",
-   "Upvotes": 2,
-   "AccountName": "gameofthreads",
-   "Title": "Mona Lisa Smile",
-   "ReleaseDate": "2003-12-19"
- },
- {
-   "ID": 4,
-   "PostDate": "1998-08-13",
-   "Text": "hehehe",
-   "Upvotes": 1,
-   "AccountName": "helloworld",
-   "Title": "Saving Private Ryan",
-   "ReleaseDate": "1998-07-24"
- },
- {
-   "ID": 5,
-   "PostDate": "2016-01-10",
-   "Text": "what a movie",
-   "Upvotes": 0,
-   "AccountName": "helloworld",
-   "Title": "Coming Home",
-   "ReleaseDate": "2014-05-16"
- }
-],
-  "upvote":[
- {
-   "AccountName": "helloworld",
-   "ID": 1
- },
- {
-   "AccountName": "gameofthreads",
-   "ID": 1
- },
- {
-   "AccountName": "bobbytables",
-   "ID": 3
- },
- {
-   "AccountName": "deadbeef",
-   "ID": 4
-},
- {
-   "AccountName": "foobar",
-   "ID": 3
- }
-],
-
-"TomHanksMovies":[
-   "Saving Private Ryan",
-   "Apollo 13",
-   "Forrest Gump",
-   "Inferno"
-]
+    {
+      "ID": 1,
+      "PostDate": "2003-03-05",
+      "Text": "hahaha",
+      "Upvotes": 2,
+      "AccountName": "foobar",
+      "Title": "Remember the Titans",
+      "ReleaseDate": "2000-09-23"
+    },
+    {
+      "ID": 2,
+      "PostDate": "2005-10-03",
+      "Text": "Well,well,well",
+      "Upvotes": 0,
+      "AccountName": "bobbytables",
+      "Title": "Harry Potter ",
+      "ReleaseDate": "2001-11-04"
+    },
+    {
+      "ID": 3,
+      "PostDate": "2004-01-25",
+      "Text": "omg",
+      "Upvotes": 2,
+      "AccountName": "gameofthreads",
+      "Title": "Mona Lisa Smile",
+      "ReleaseDate": "2003-12-19"
+    },
+    {
+      "ID": 4,
+      "PostDate": "1998-08-13",
+      "Text": "hehehe",
+      "Upvotes": 1,
+      "AccountName": "helloworld",
+      "Title": "Saving Private Ryan",
+      "ReleaseDate": "1998-07-24"
+    },
+    {
+      "ID": 5,
+      "PostDate": "2016-01-10",
+      "Text": "what a movie",
+      "Upvotes": 0,
+      "AccountName": "helloworld",
+      "Title": "Coming Home",
+      "ReleaseDate": "2014-05-16"
+    }
+  ],
+  "upvote": [
+    {
+      "AccountName": "helloworld",
+      "ID": 1
+    },
+    {
+      "AccountName": "gameofthreads",
+      "ID": 1
+    },
+    {
+      "AccountName": "bobbytables",
+      "ID": 3
+    },
+    {
+      "AccountName": "deadbeef",
+      "ID": 4
+    },
+    {
+      "AccountName": "foobar",
+      "ID": 3
+    }
+  ],
+  "TomHanksMovies": [
+    "Saving Private Ryan",
+    "Apollo 13",
+    "Forrest Gump",
+    "Inferno"
+  ],
+  "login": {
+    "valid": true
+  },
+  "register": [
+    "asdfaa",
+    "asdfadsf"
+  ]
 }
