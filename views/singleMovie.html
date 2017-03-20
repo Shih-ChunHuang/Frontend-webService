@@ -91,7 +91,7 @@
 
             $.ajax({
                 dataType: 'json',
-                url: 'http://localhost:3000/' + movieTitle,
+                url: 'http://localhost:8080/' + movieTitle,
                 success: function(data) {
                     console.log(data);
                     setDataFields(data);
