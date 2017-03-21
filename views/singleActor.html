@@ -53,14 +53,14 @@
                   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
                 </div>
 
-                <div class="list-group" id='actor-movies-list'>
+                <!-- <div class="list-group" id='actor-movies-list'>
                   <a href="#" class="list-group-item disabled">Appeared In:</a>
                   <a href="#" class="list-group-item">Saving Private Ryan</a>
                   <a href="#" class="list-group-item">Apollo 13</a>
                   <a href="#" class="list-group-item">Forrest Gump</a>
                   <a href="#" class="list-group-item">Inferno</a>
                 </div>
-
+ -->
             </div>
         </div>
 
@@ -105,9 +105,9 @@
         function setDataFields(data) {
             data = data[0];
 
-            var name = data["Name"];
-            var birthday = data['Birthday'];
-            var nationality = data['Nationality'];
+            var name = data["name"];
+            var birthday = data['birthday'];
+            var nationality = data['nationality'];
 
             var nameField = document.getElementById('actor-name');
             var birthdayField = document.getElementById('actor-birthday');
@@ -122,7 +122,7 @@
             var queryPath = 'TomHanksMovies';
             $.ajax({
                 dataType: 'json',
-                url: 'http://localhost:3000/' + queryPath,
+                url: 'http://localhost:8080/' + queryPath,
                 success: function(data) {
                     console.log(data);
                     var movieListHtml = document.getElementById('actor-movies-list');

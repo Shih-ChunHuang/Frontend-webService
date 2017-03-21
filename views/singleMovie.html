@@ -64,49 +64,61 @@
     <script>
         $(document).ready(function() {
 
-            var movieTitle = parseMoiveTitle();
-            getMoiveData(movieTitle);
+            // var movieinfo = parseMoiveTitle();
+            var temp = "Coming Home";
+            getMoiveData(temp);
             
 
         });
 
-        function parseMoiveTitle() {
-            var query = window.location.search.substring(1);
-            console.log(query); 
-            // movietitle=Remember%20the%20Titans
+        // function parseMoiveTitle() {
+        //     var query = window.location.search.substring(1);
+        //     console.log(query); 
+        //     // singlemovie=Remember%20the%20Titans-2000-09-23
 
-            var movietitle = query.split('=')[1];
-            console.log(movietitle);
-            // Remember%20the%20Titans
+        //     var singlemovie = query.split('=')[1];
+        //     console.log(singlemovie);
+        //     // Remember%20the%20Titans-2000-09-23
 
-            var movietitle = movietitle.replace('%20','');//remove first %20
-            var movietitle = movietitle.replace('%20','');//remove second %20
-            console.log(movietitle);
+        //     var singlemovie1 = singlemovie.replace('%20','');//remove first %20
+        //     var singlemovie2 = singlemovie1.replace('%20','');//remove second %20
+        //     console.log(singlemovie2);
+
+        //     var movietitle = singlemovie2.split('-', 1)[0];
+        //     console.log(movietitle);
+        //     var releasedate = singlemovie2.split('-', 1)[1];
+        //     console.log(releasedate);
+
            
-            return movietitle;
-        }
+        //     // return {'title':movietitle, 'releasedate':releasedate};
+        //     return {'title':"Coming Home"};
+        // }
 
-        function getMoiveData(movieTitle) {
-            console.log(movieTitle);
+        function getMoiveData(movieinfo) {
+            console.log(movieinfo);
 
             $.ajax({
+                type:'GET',
                 dataType: 'json',
-                url: 'http://localhost:8080/' + movieTitle,
+                contentType: "application/json",
+                url:'http://localhost:8080/movie',
+                data:movieinfo,
                 success: function(data) {
                     console.log(data);
                     setDataFields(data);
                 }
             })
+
         }
 
         function setDataFields(data) {
             // data is an array
             data = data[0];
 
-            var title = data["Title"];
-            var releasedate = data['Releasedate'];
-            var director = data['Director'];
-            var distributedcompany = data['Distributedcompany'];
+            var title = data["title"];
+            var releasedate = data['released'];
+            var director = data['director'];
+            var distributedcompany = data['company'];
 
             var titleField = document.getElementById('movie-title');
             var releasedateField = document.getElementById('movie-releasedate');

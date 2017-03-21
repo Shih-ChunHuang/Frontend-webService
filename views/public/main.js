@@ -55,26 +55,17 @@ $(function () {
 
              
                 console.log(d);
-                console.log(d['Title']);
-                movietitle = d['Title'];
+                console.log(d['title']);
+                movietitle = d['title'];
+                moviereleased = d['released'];
 
-                // removing white spaces
-                str = movietitle.replace(/\s+/g, ''); 
+
+                // params = 'singlemovie=' + movietitle + "-" + moviereleased;
+                // console.log(params);
+                        
+                // window.open("singleMovie.html" + '?' + params);
                 
-                console.log("http://localhost:8080/" + str);
-
-                   $.ajax({
-                    dataType: "json",
-                    url: "http://localhost:8080/" + str,
-                    success: function(data){
-                       
-                        params = 'movietitle=' + movietitle;
-                        
-                        window.open("singleMovie.html" + '?' + params);
-                        
-                  }
-
-                });
+                window.open("singleMovie.html");
 
              })
             .selectAll("td")
@@ -152,28 +143,12 @@ $(function () {
 
              
                 console.log(d);
-                console.log(d['Name']);
-                actorname = d['Name'];
-
-                // removing white spaces
-                str = actorname.replace(/\s+/g, ''); 
+                console.log(d['name']);
+                actorname = d['name'];
                 
-                console.log("http://localhost:8080/" + str);
-
-
-               
-                $.ajax({
-                    dataType: "json",
-                    url: "http://localhost:8080/" + str,
-                    success: function(data){
-                        
-                        params = 'actorname=' + actorname;
+                params = 'actorname=' + actorname;
                       
-                        window.open("singleActor.html" + '?' + params);
-                    
-                  }
-
-                });
+                window.open("singleActor.html" + '?' + params);
                  
 
 
