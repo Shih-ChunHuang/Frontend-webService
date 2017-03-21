@@ -56,7 +56,7 @@ $(function () {
              
                 console.log(d);
                 console.log(d['Title']);
-
+                var title = d['Title'];
                 // removing white spaces
                 str = d['Title'].replace(/\s+/g, ''); 
             
@@ -72,7 +72,7 @@ $(function () {
                         // console.log(data["Title"]);
 
                         // var openW = window.open("");
-                        window.open("singleMovie.html");
+                        window.open("singleMovie.html" + "?" + title);
                         // openW.document.write(JSON.stringify(data));
                         // openW.document.title = data["Title"];
                         // generateTableMovie(data);

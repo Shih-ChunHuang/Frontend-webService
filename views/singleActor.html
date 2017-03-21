@@ -81,12 +81,17 @@
 
         function parseActorName() {
             var query = window.location.search.substring(1);
+            console.log(query);
             var params = query.split('&');
+            console.log(params);
 
             var actorName = params[0].split('=')[1];
             console.log(actorName);
             var firstName = actorName.split('%20')[0];
             var lastName = actorName.split('%20')[1];
+            console.log("firstName: " + firstName);
+            console.log("lastName: " + lastName);
+
             return firstName + " " + lastName;
         }
 
