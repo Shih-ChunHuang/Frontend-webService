@@ -41,22 +41,21 @@
 
 <div class="container">
         <div class="jumbotron">
-            <div class="container form-group myBox myBoxColor" id="singleMovie-dataDisplay">
-
-
-
+            
                 <div class="jumbotron">
                   <h1 id='movie-title'></h1>
                   <p id='movie-releasedate'></p>
                   <p id='movie-director'></p>
                   <p id='movie-distributedcompany'></p>
+                  <p id='movie-comments'>
+                      <div class="container form-group" id="comments-Display"></div>
+                  </p>
+                  <textarea id="reviewBox" name="textarea" rows="10" cols="107" maxlength="500">Give your review...(500 character limit)</textarea>
 
-                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Submit</a></p>
                 </div>
-
-            </div>
+           
         </div>
-
 
 
     </div>
@@ -64,46 +63,40 @@
     <script>
         $(document).ready(function() {
 
-            // var movieinfo = parseMoiveTitle();
-            var temp = "Coming Home";
-            getMoiveData(temp);
+            var movieinfo = parseMoiveTitle();
+            getMoiveData(movieinfo);
             
 
         });
 
-        // function parseMoiveTitle() {
-        //     var query = window.location.search.substring(1);
-        //     console.log(query); 
-        //     // singlemovie=Remember%20the%20Titans-2000-09-23
+        function parseMoiveTitle() {
+            var query = window.location.search.substring(1);
+            console.log(query); 
 
-        //     var singlemovie = query.split('=')[1];
-        //     console.log(singlemovie);
-        //     // Remember%20the%20Titans-2000-09-23
+            var singlemovie = query.split('=')[1];
+            
+            var goodsinglemovie = singlemovie.replace(/%20/g,' ');;//remove %20
+            
+            console.log(goodsinglemovie);
 
-        //     var singlemovie1 = singlemovie.replace('%20','');//remove first %20
-        //     var singlemovie2 = singlemovie1.replace('%20','');//remove second %20
-        //     console.log(singlemovie2);
-
-        //     var movietitle = singlemovie2.split('-', 1)[0];
-        //     console.log(movietitle);
-        //     var releasedate = singlemovie2.split('-', 1)[1];
-        //     console.log(releasedate);
-
+            var movietitle = goodsinglemovie.split('-', 1)[0];
+            console.log(movietitle);
+            var releasedate = goodsinglemovie.split('-', 1)[1];
+        
            
-        //     // return {'title':movietitle, 'releasedate':releasedate};
-        //     return {'title':"Coming Home"};
-        // }
+            // return {'title':movietitle, 'releasedate':releasedate};
+            return movietitle;
+        }
 
         function getMoiveData(movieinfo) {
             console.log(movieinfo);
 
             $.ajax({
-                type:'GET',
                 dataType: 'json',
                 contentType: "application/json",
-                url:'http://localhost:8080/movie',
-                data:movieinfo,
+                url:'http://localhost:8080/movie/' + movieinfo,
                 success: function(data) {
+                    console.log("testing inside getMoiveData");
                     console.log(data);
                     setDataFields(data);
                 }
@@ -112,26 +105,80 @@
         }
 
         function setDataFields(data) {
-            // data is an array
-            data = data[0];
+           
 
-            var title = data["title"];
+            var title = data['title'];
             var releasedate = data['released'];
             var director = data['director'];
             var distributedcompany = data['company'];
+            var comments = data['comments']; //comments is a array
+
 
             var titleField = document.getElementById('movie-title');
             var releasedateField = document.getElementById('movie-releasedate');
             var directorField = document.getElementById('movie-director');
             var distributedcompanyField = document.getElementById('movie-distributedcompany');
 
+            var commentsField = document.getElementById('movie-comments');
+
             titleField.innerHTML = title;
             releasedateField.innerHTML = "Release Date: " + releasedate;
             directorField.innerHTML = "Director: " + director;
             distributedcompanyField.innerHTML = "Distributed Company: " + distributedcompany;
+            commentsField.innerHTML = "Comments: " + generateTable(comments);
 
          }
 
+        function generateTable(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#comments-Display");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
 
     </script>
 </body>

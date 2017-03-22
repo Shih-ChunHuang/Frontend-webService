@@ -60,12 +60,12 @@ $(function () {
                 moviereleased = d['released'];
 
 
-                // params = 'singlemovie=' + movietitle + "-" + moviereleased;
-                // console.log(params);
+                params = 'singlemovie=' + movietitle + "-" + moviereleased;
+                console.log(params);
                         
-                // window.open("singleMovie.html" + '?' + params);
+                window.open("singleMovie.html" + '?' + params);
                 
-                window.open("singleMovie.html");
+                // window.open("singleMovie.html");
 
              })
             .selectAll("td")
