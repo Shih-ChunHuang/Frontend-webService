@@ -39,31 +39,20 @@
         </div>
     </nav>
 
-    <div class="container">
+   <div class="container">
         <div class="jumbotron">
-            <div class="container form-group myBox myBoxColor" id="singleActor-dataDisplay">
-
-
-
+            
                 <div class="jumbotron">
+
                   <h1 id='actor-name'></h1>
                   <p id='actor-birthday'></p>
                   <p id='actor-nationality'></p>
+                  <p id='movie-count'></p>
 
                   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
                 </div>
-
-                <!-- <div class="list-group" id='actor-movies-list'>
-                  <a href="#" class="list-group-item disabled">Appeared In:</a>
-                  <a href="#" class="list-group-item">Saving Private Ryan</a>
-                  <a href="#" class="list-group-item">Apollo 13</a>
-                  <a href="#" class="list-group-item">Forrest Gump</a>
-                  <a href="#" class="list-group-item">Inferno</a>
-                </div>
- -->
-            </div>
+          
         </div>
-
 
 
     </div>
@@ -73,71 +62,102 @@
     <script>
         $(document).ready(function() {
 
-            var actorName = parseActorName();
-            getActorData(actorName);
-            getMovieList(actorName);
+            var actorInfo = parseActorName();
+
+            getActorData(actorInfo);
+            getMovieCount(actorInfo);
+            // getMovieList(actorInfo);
 
         });
 
         function parseActorName() {
             var query = window.location.search.substring(1);
-            var params = query.split('&');
+     
+            var singleactorName = query.split('=')[1];
+            console.log(singleactorName);
+            var goodsingleactorName = singleactorName.replace(/%20/g,' ');
+            console.log(goodsingleactorName);
 
-            var actorName = params[0].split('=')[1];
-            console.log(actorName);
-            var firstName = actorName.split('%20')[0];
-            var lastName = actorName.split('%20')[1];
-            return firstName + " " + lastName;
+            
+            return goodsingleactorName;
         }
 
-        function getActorData(actorName) {
-            var testingPath = actorName.replace(' ', '');
+        function getActorData(path) {
+            
 
             $.ajax({
                 dataType: 'json',
-                url: 'http://localhost:8080/' + testingPath,
+                url: 'http://localhost:8080/actor/' + path,
                 success: function(data) {
+                	console.log("testing inside actor");
                     setDataFields(data);
                 }
             })
+
+            
+        }
+
+        function getMovieCount(path) {
+
+        	$.ajax({
+                dataType: 'json',
+                url: 'http://localhost:8080/moviecount/' + path,
+                success: function(data) {
+                	console.log("testing inside moviecount");
+                	setMovieCount(data);
+                    
+                }
+            })
+
         }
 
         function setDataFields(data) {
-            data = data[0];
+            
 
             var name = data["name"];
             var birthday = data['birthday'];
             var nationality = data['nationality'];
 
+
             var nameField = document.getElementById('actor-name');
             var birthdayField = document.getElementById('actor-birthday');
             var nationalityField = document.getElementById('actor-nationality');
 
+            
+
             nameField.innerHTML = name;
-            birthdayField.innerHTML = "Birthday: " + birthday;
-            nationalityField.innerHTML = "Nationality: " + nationality;
+            birthdayField.innerHTML = "<strong>Birthday : </strong>" + birthday;
+            nationalityField.innerHTML = "<strong>Nationality : </strong>" + nationality;
+
+             
         }
 
-        function getMovieList(actorName) {
-            var queryPath = 'TomHanksMovies';
-            $.ajax({
-                dataType: 'json',
-                url: 'http://localhost:8080/' + queryPath,
-                success: function(data) {
-                    console.log(data);
-                    var movieListHtml = document.getElementById('actor-movies-list');
+        function setMovieCount(data){
 
-                    for (var movie of data) {
-                        console.log(movie);
-                        var listItem = '<a href="#" class="list-group-item">' + movie + '</a>';
-                    }
-
-                }
-
-            })
-
+        	console.log(data);
 
         }
+
+        // function getMovieList(actorName) {
+        //     var queryPath = 'TomHanksMovies';
+        //     $.ajax({
+        //         dataType: 'json',
+        //         url: 'http://localhost:8080/' + queryPath,
+        //         success: function(data) {
+        //             console.log(data);
+        //             var movieListHtml = document.getElementById('actor-movies-list');
+
+        //             for (var movie of data) {
+        //                 console.log(movie);
+        //                 var listItem = '<a href="#" class="list-group-item">' + movie + '</a>';
+        //             }
+
+        //         }
+
+        //     })
+
+
+        // }
 
 
     </script>

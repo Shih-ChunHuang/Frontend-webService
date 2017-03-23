@@ -60,7 +60,7 @@ $(function () {
                 moviereleased = d['released'];
 
 
-                params = 'singlemovie=' + movietitle + "-" + moviereleased;
+                params = 'singlemovie=' + movietitle + "\/" + moviereleased;
                 console.log(params);
                         
                 window.open("singleMovie.html" + '?' + params);
@@ -144,9 +144,11 @@ $(function () {
              
                 console.log(d);
                 console.log(d['name']);
+
                 actorname = d['name'];
+                bday = d['birthday'];
                 
-                params = 'actorname=' + actorname;
+                params = 'actorname=' + actorname + "\/" + bday;
                       
                 window.open("singleActor.html" + '?' + params);
                  

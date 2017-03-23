@@ -50,7 +50,7 @@
                   <p id='movie-comments'>
                       <div class="container form-group" id="comments-Display"></div>
                   </p>
-                  <textarea id="reviewBox" name="textarea" rows="10" cols="107" maxlength="500">Give your review...(500 character limit)</textarea>
+                  <textarea id="reviewBox" name="textarea" rows="10" cols="107" maxlength="300" width="100%" resize="none">Give your review...(500 character limit)</textarea>
 
                   <p><a class="btn btn-primary btn-lg" href="#" role="button">Submit</a></p>
                 </div>
@@ -65,6 +65,7 @@
 
             var movieinfo = parseMoiveTitle();
             getMoiveData(movieinfo);
+
             
 
         });
@@ -75,26 +76,24 @@
 
             var singlemovie = query.split('=')[1];
             
-            var goodsinglemovie = singlemovie.replace(/%20/g,' ');;//remove %20
+            var goodsinglemovie = singlemovie.replace(/%20/g,' ');//remove %20
             
             console.log(goodsinglemovie);
-
-            var movietitle = goodsinglemovie.split('-', 1)[0];
-            console.log(movietitle);
-            var releasedate = goodsinglemovie.split('-', 1)[1];
-        
+            
            
-            // return {'title':movietitle, 'releasedate':releasedate};
-            return movietitle;
+            return goodsinglemovie;
+           
         }
 
-        function getMoiveData(movieinfo) {
-            console.log(movieinfo);
+        function getMoiveData(path) {
+            
+            console.log(path);
+
 
             $.ajax({
                 dataType: 'json',
                 contentType: "application/json",
-                url:'http://localhost:8080/movie/' + movieinfo,
+                url:'http://localhost:8080/movie/' + path,
                 success: function(data) {
                     console.log("testing inside getMoiveData");
                     console.log(data);
@@ -122,10 +121,12 @@
             var commentsField = document.getElementById('movie-comments');
 
             titleField.innerHTML = title;
-            releasedateField.innerHTML = "Release Date: " + releasedate;
-            directorField.innerHTML = "Director: " + director;
-            distributedcompanyField.innerHTML = "Distributed Company: " + distributedcompany;
-            commentsField.innerHTML = "Comments: " + generateTable(comments);
+            releasedateField.innerHTML = "<strong>Release Date : </strong>" + releasedate;
+            directorField.innerHTML = "<strong>Director : </strong>" + director;
+            distributedcompanyField.innerHTML = "<strong>Distributed Company : </strong>" + distributedcompany;
+            commentsField.innerHTML = "<strong>Comments : </strong>";
+            generateTable(comments);
+
 
          }
 
