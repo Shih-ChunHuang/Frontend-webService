@@ -74,9 +74,9 @@
             var query = window.location.search.substring(1);
      
             var singleactorName = query.split('=')[1];
-            console.log(singleactorName);
+            // console.log(singleactorName);
             var goodsingleactorName = singleactorName.replace(/%20/g,' ');
-            console.log(goodsingleactorName);
+            // console.log(goodsingleactorName);
 
             
             return goodsingleactorName;
@@ -84,6 +84,7 @@
 
         function getActorData(path) {
             
+            console.log(path);
 
             $.ajax({
                 dataType: 'json',
@@ -99,6 +100,7 @@
 
         function getMovieCount(path) {
 
+            console.log(path);
         	$.ajax({
                 dataType: 'json',
                 url: 'http://localhost:8080/moviecount/' + path,
@@ -134,7 +136,17 @@
 
         function setMovieCount(data){
 
-        	console.log(data);
+        	var mc = data['moviecount'];
+
+            var moviecountField = document.getElementById('movie-count');
+
+            if (mc > 1){
+                moviecountField.innerHTML = "<strong>Appears In </strong>" + mc + " <strong>Movies</strong>"; 
+            }else {
+                moviecountField.innerHTML = "<strong>Appears In </strong>" + mc + " <strong>Movie</strong>";
+            }
+
+            
 
         }
 
