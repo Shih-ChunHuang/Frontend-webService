@@ -87,6 +87,7 @@
                     success: function(data) {
 
                         generateTableActor(data);
+                        console.log(data);
 
                         // var jsonObj = $.parseJSON(JSON.stringify(data));
                         // var html = '<table border="1">';
@@ -112,7 +113,9 @@
                         url:'http://localhost:8080/leastmovies/',
                         success: function(data) {
 
-                            generateTableActor(data);
+
+                        console.log(data);
+                        generateTableActor(data);
    
                         // var jsonObj = $.parseJSON(JSON.stringify(data));
                         // var html = '<table border="1">';
