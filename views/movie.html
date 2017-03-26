@@ -51,13 +51,13 @@
                 
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="attr2">&nbspDirector
+                        <input class="form-check-input" type="checkbox" id="box1" value="attr2">&nbspDirector
                       </label>
                     </div>
                    
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="attr4">&nbspDistributed Company
+                        <input class="form-check-input" type="checkbox" id="box2" value="attr4">&nbspDistributed Company
                       </label>
                     </div>
                    <!--  3 when both selected -->
@@ -66,13 +66,13 @@
                     
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="attr2">&nbspReleased after year of 2000(inclusive)
+                        <input class="form-check-input" type="checkbox" id="box4" value="attr2">&nbspReleased after year of 2000(inclusive)
                       </label>
                     </div>
                    
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="attr4">&nbspReleased before year of 2000
+                        <input class="form-check-input" type="checkbox" id="box5" value="attr4">&nbspReleased before year of 2000
                       </label>
                     </div>
                     <!-- 6 when both selected -->
@@ -102,7 +102,7 @@
 
          $('#movie-datasetGet').click(function(){
 
-            if($('#inlineCheckbox1').prop('checked') && !$('#inlineCheckbox2').prop('checked')) {
+            if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')) {
                 console.log("1");
 
                    $.ajax({
@@ -130,14 +130,104 @@
                 })
 
 
-            } else if ($('#inlineCheckbox2').prop('checked') && !$('#inlineCheckbox1').prop('checked')){
+            } else if ($('#box2').prop('checked') && !$('#box1').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')){
                 console.log("2");
 
-            } else if ($('#inlineCheckbox1').prop('checked') && $('#inlineCheckbox2').prop('checked')){
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/2/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#movie-dataDisplay').html(html);
+                           
+                  
+                 }
+                })
+
+
+            } else if ($('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')){
 
                  console.log("3");
 
-            } 
+                 $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/3/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#movie-dataDisplay').html(html);
+                           
+                  
+                 }
+                })
+
+
+            } else if ($('#box4').prop('checked') && !$('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box5').prop('checked')){
+
+                console.log("4");
+
+            }else if ($('#box5').prop('checked') && !$('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked')){
+
+                console.log("5");
+
+            }else if($('#box4').prop('checked') && $('#box5').prop('checked') && !$('#box1').prop('checked') && !$('#box2').prop('checked')){
+
+                console.log("6");
+
+            }else if ($('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
+
+                console.log("36");
+
+            }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
+
+                console.log("145");
+
+            }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
+                console.log("14");
+
+            }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
+
+                console.log("15");
+
+            }else if (!$('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
+
+                console.log("245");
+            } else if (!$('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
+                console.log("24");
+            } else if(!$('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
+                console.log("25");
+            }else if($('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
+                console.log("124");
+            }else if($('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
+                console.log("125");
+
+            }
+
 
 
          });
@@ -160,17 +250,19 @@
                     url:'http://localhost:8080/ratedbyall/',
                     success: function(data) {
 
-                        var jsonObj = $.parseJSON(JSON.stringify(data));
-                        var html = '<table border="1">';
-                        $.each(jsonObj, function(key, value){
-                            html += '<tr>';
-                            html += '<td>' + key + '</td>';
-                            html += '<td>' + value + '</td>';
-                            html += '</tr>';
-                        });
-                        html += '</table>';
+                        generateTableMovie(data);
 
-                        $('#movie-dataDisplay').html(html);
+                        // var jsonObj = $.parseJSON(JSON.stringify(data));
+                        // var html = '<table border="1">';
+                        // $.each(jsonObj, function(key, value){
+                        //     html += '<tr>';
+                        //     html += '<td>' + key + '</td>';
+                        //     html += '<td>' + value + '</td>';
+                        //     html += '</tr>';
+                        // });
+                        // html += '</table>';
+
+                        // $('#movie-dataDisplay').html(html);
                            
                   
                  }
@@ -204,6 +296,74 @@
             }
         
     });
+
+         function generateTableMovie(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#movie-dataDisplay");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .on("click", function(d) { 
+
+             
+                console.log(d);
+                console.log(d['title']);
+                movietitle = d['title'];
+                moviereleased = d['released'];
+
+
+                params = 'singlemovie=' + movietitle + "\/" + moviereleased;
+                console.log(params);
+                        
+                window.open("singleMovie.html" + '?' + params);
+                
+                // window.open("singleMovie.html");
+
+             })
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
 
         
 </script>

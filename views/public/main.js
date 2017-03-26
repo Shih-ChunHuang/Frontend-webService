@@ -2,17 +2,18 @@ $(function () {
 
     $("#movie-datasetGet").click(function (e) {
             e.preventDefault();
-            console.log("testing");
-                // askldjfklasjdfklajsdf
+            
+                
                 $.ajax({
                   dataType: "json",
                   url: "http://localhost:8080/allmovies",
                   success: function(data){
 
-                    console.log("testing inside ajax success");
+                    
                     console.log(data);
 
-                    generateTableMovie(data);
+                     generateTableMovie(data);
+                        
 
                   }
 
