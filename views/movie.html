@@ -51,36 +51,37 @@
                 
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="attr2">&nbspDirector
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="attr2">&nbspDirector
                       </label>
                     </div>
                    
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="attr4">&nbspDistributed Company
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="attr4">&nbspDistributed Company
                       </label>
                     </div>
+                   <!--  3 when both selected -->
                 </br>
                 <p><strong>Filter By...</strong></p>
                     
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="attr2">&nbspReleased after year of 2000(inclusive)
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="attr2">&nbspReleased after year of 2000(inclusive)
                       </label>
                     </div>
                    
                     <div class="form-check form-check-inline disabled">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="attr4">&nbspReleased before year of 2000
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="attr4">&nbspReleased before year of 2000
                       </label>
                     </div>
-                    
+                    <!-- 6 when both selected -->
                     <h2><button type="button" class="btn btn-primary" id="movie-datasetGet" style="margin-bottom:2em">Get Movie Table</button></h2>
 
 
-                    <select class="form-control" id="datasetId">
+                    <select class="form-control" id="movie-querySet">
                         <option selected="selected">I want to know about...</option>
-                        <option value="q1">Get Movie(s) Rated 5 By All Users</option>
+                        <option value="movie-query1">Get Movie(s) Rated 5 By All Users</option>
                     </select>
                     <button type="button" class="btn btn-primary" id="queryGet" style="margin-top: 2em">Get Data</button>
 
@@ -97,6 +98,114 @@
     <div class="container form-group myBox myBoxColor" id="movie-dataDisplay"></div>
     </div>
 </div>
+<script type="text/javascript">
 
+         $('#movie-datasetGet').click(function(){
+
+            if($('#inlineCheckbox1').prop('checked') && !$('#inlineCheckbox2').prop('checked')) {
+                console.log("1");
+
+                   $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#movie-dataDisplay').html(html);
+                           
+                  
+                 }
+                })
+
+
+            } else if ($('#inlineCheckbox2').prop('checked') && !$('#inlineCheckbox1').prop('checked')){
+                console.log("2");
+
+            } else if ($('#inlineCheckbox1').prop('checked') && $('#inlineCheckbox2').prop('checked')){
+
+                 console.log("3");
+
+            } 
+
+
+         });
+
+        
+        //Get Data in actor.html
+        $("#queryGet").click(function(){
+            console
+            var query = $('#movie-querySet').val();
+            
+
+            if (query == "I want to know about..."){
+                alert("Please choose one");
+            }else {
+                if (query == 'movie-query1'){
+                    
+                    $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/ratedbyall/',
+                    success: function(data) {
+
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#movie-dataDisplay').html(html);
+                           
+                  
+                 }
+                })
+
+                }else if (query == 'movie-query2'){
+                    
+                        //     $.ajax({
+                        // dataType: 'json',
+                        // contentType: "application/json",
+                        // url:'http://localhost:8080/leastmovies/',
+                        // success: function(data) {
+   
+                        // var jsonObj = $.parseJSON(JSON.stringify(data));
+                        // var html = '<table border="1">';
+                        // $.each(jsonObj, function(key, value){
+                        //     html += '<tr>';
+                        //     html += '<td>' + key + '</td>';
+                        //     html += '<td>' + value + '</td>';
+                        //     html += '</tr>';
+                        // });
+                        // html += '</table>';
+
+                        // $('#actor-dataDisplay').html(html);
+                                
+                        
+                
+                    }
+            
+                
+            }
+        
+    });
+
+        
+</script>
 </body>
 </html>
