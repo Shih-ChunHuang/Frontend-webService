@@ -176,19 +176,6 @@
 
                         generateTableMovie(data);
 
-                        // var jsonObj = $.parseJSON(JSON.stringify(data));
-                        // var html = '<table border="1">';
-                        // $.each(jsonObj, function(key, value){
-                        //     html += '<tr>';
-                        //     html += '<td>' + key + '</td>';
-                        //     html += '<td>' + value + '</td>';
-                        //     html += '</tr>';
-                        // });
-                        // html += '</table>';
-
-                        // $('#movie-dataDisplay').html(html);
-                           
-                  
                  }
                 })
 
@@ -197,40 +184,196 @@
 
                 console.log("4");
 
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/4/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
+
             }else if ($('#box5').prop('checked') && !$('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked')){
 
                 console.log("5");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
 
             }else if($('#box4').prop('checked') && $('#box5').prop('checked') && !$('#box1').prop('checked') && !$('#box2').prop('checked')){
 
                 console.log("6");
 
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/6/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
+
             }else if ($('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
 
                 console.log("36");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/3/6/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
 
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
 
                 console.log("145");
 
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/4/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
+
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
                 console.log("14");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/4/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
 
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
 
                 console.log("15");
 
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
+
             }else if (!$('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
 
                 console.log("245");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/2/4/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
             } else if (!$('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
                 console.log("24");
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/2/4/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
+
             } else if(!$('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
                 console.log("25");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/2/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
             }else if($('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
                 console.log("124");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/2/4/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
             }else if($('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
                 console.log("125");
+
+                $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/allmovies/1/2/5/',
+                    success: function(data) {
+
+                        console.log(data);
+
+                        generateTableMovie(data);
+
+                 }
+                })
 
             }
 
