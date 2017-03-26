@@ -86,17 +86,19 @@
                     url:'http://localhost:8080/mostmovies/',
                     success: function(data) {
 
-                        var jsonObj = $.parseJSON(JSON.stringify(data));
-                        var html = '<table border="1">';
-                        $.each(jsonObj, function(key, value){
-                            html += '<tr>';
-                            html += '<td>' + key + '</td>';
-                            html += '<td>' + value + '</td>';
-                            html += '</tr>';
-                        });
-                        html += '</table>';
+                        generateTableActor(data);
 
-                        $('#actor-dataDisplay').html(html);
+                        // var jsonObj = $.parseJSON(JSON.stringify(data));
+                        // var html = '<table border="1">';
+                        // $.each(jsonObj, function(key, value){
+                        //     html += '<tr>';
+                        //     html += '<td>' + key + '</td>';
+                        //     html += '<td>' + value + '</td>';
+                        //     html += '</tr>';
+                        // });
+                        // html += '</table>';
+
+                        // $('#actor-dataDisplay').html(html);
                            
                   
                  }
@@ -109,18 +111,20 @@
                         contentType: "application/json",
                         url:'http://localhost:8080/leastmovies/',
                         success: function(data) {
-   
-                        var jsonObj = $.parseJSON(JSON.stringify(data));
-                        var html = '<table border="1">';
-                        $.each(jsonObj, function(key, value){
-                            html += '<tr>';
-                            html += '<td>' + key + '</td>';
-                            html += '<td>' + value + '</td>';
-                            html += '</tr>';
-                        });
-                        html += '</table>';
 
-                        $('#actor-dataDisplay').html(html);
+                            generateTableActor(data);
+   
+                        // var jsonObj = $.parseJSON(JSON.stringify(data));
+                        // var html = '<table border="1">';
+                        // $.each(jsonObj, function(key, value){
+                        //     html += '<tr>';
+                        //     html += '<td>' + key + '</td>';
+                        //     html += '<td>' + value + '</td>';
+                        //     html += '</tr>';
+                        // });
+                        // html += '</table>';
+
+                        // $('#actor-dataDisplay').html(html);
                                 
                         
                 
@@ -130,6 +134,73 @@
             }
         }
     });
+
+        function generateTableActor(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#actor-dataDisplay");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .on("click", function(d) { 
+
+             
+                console.log(d);
+                console.log(d['name']);
+
+                actorname = d['name'];
+                bday = d['birthday'];
+                
+                params = 'actorname=' + actorname + "\/" + bday;
+                      
+                window.open("singleActor.html" + '?' + params);
+                 
+
+
+             })
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
 
         
 </script>
