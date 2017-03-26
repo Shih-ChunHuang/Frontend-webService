@@ -47,30 +47,13 @@
             <div class="container form-group">
 
                 <div class="form-group col-lg-6" style="margin-top: 2em">
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="attr1">&nbspName
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="attr2">&nbspBirthday
-                      </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="attr3">&nbspNationality
-                      </label>
-                    </div>
-                
+                    
                     <h2><button type="button" class="btn btn-primary" id="actor-datasetGet" style="margin-bottom:2em">Get Actor Table</button></h2>
 
-                    <select class="form-control" id="datasetId">
+                    <select class="form-control" id="actor-querySet">
                         <option selected="selected">I want to know about...</option>
-                        <option value="q1">Query 1</option>
-                        <option value="q2">Query 2</option>
-                        <option value="q3">Query 3</option>
-                        <option value="q4">Query 4</option>
+                        <option value="actor-query1" id="max">Get Actor(s) Who Has Acted In The Most Movies</option>
+                        <option value="actor-query2" id="min">Get Actor(s) Who Has Acted In The Fewest Movies</option>
                     </select>
                     <button type="button" class="btn btn-primary" id="queryGet" style="margin-top: 2em">Get Data</button>
 
@@ -85,6 +68,71 @@
     <div class="container form-group myBox myBoxColor" id="actor-dataDisplay"></div>
     </div>
 </div>
+<script type="text/javascript">
+    //Get Data in actor.html
+        $("#queryGet").click(function(){
 
+            var query = $('#actor-querySet').val();
+            
+
+            if (query == "I want to know about..."){
+                alert("Please choose one");
+            }else {
+                if (query == 'actor-query1'){
+                    
+                    $.ajax({
+                    dataType: 'json',
+                    contentType: "application/json",
+                    url:'http://localhost:8080/mostmovies/',
+                    success: function(data) {
+
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#actor-dataDisplay').html(html);
+                           
+                  
+                 }
+                })
+
+                }else if (query == 'actor-query2'){
+                    
+                            $.ajax({
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url:'http://localhost:8080/leastmovies/',
+                        success: function(data) {
+   
+                        var jsonObj = $.parseJSON(JSON.stringify(data));
+                        var html = '<table border="1">';
+                        $.each(jsonObj, function(key, value){
+                            html += '<tr>';
+                            html += '<td>' + key + '</td>';
+                            html += '<td>' + value + '</td>';
+                            html += '</tr>';
+                        });
+                        html += '</table>';
+
+                        $('#actor-dataDisplay').html(html);
+                                
+                        
+                
+                    }
+            
+                });
+            }
+        }
+    });
+
+        
+</script>
 </body>
+
 </html>

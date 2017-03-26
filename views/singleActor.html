@@ -103,7 +103,7 @@
             console.log(path);
         	$.ajax({
                 dataType: 'json',
-                url: 'http://localhost:8080/moviecount/' + path,
+                url: 'http://localhost:8080/moviecount/' + path + "/RRRRR",
                 success: function(data) {
                 	console.log("testing inside moviecount");
                 	setMovieCount(data);

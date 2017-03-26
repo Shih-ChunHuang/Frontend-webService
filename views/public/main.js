@@ -108,6 +108,8 @@ $(function () {
              
         });
 
+        
+
         function generateTableActor(data) {
         var columns = [];
         Object.keys(data[0]).forEach(function (title) {
