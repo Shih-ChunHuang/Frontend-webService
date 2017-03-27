@@ -130,8 +130,6 @@
                                     console.log("postReview ajax");
                                     
                                 }
-                            }).fail(function(e){
-                                alert("Bad Request");
                             })
 
 
@@ -198,8 +196,8 @@
             var releasedate = data['released'];
             var director = data['director'];
             var distributedcompany = data['company'];
-            var comments = data['comments']; //comments is a array
-            var reviews = data['text'];
+            var comments = data['comments'];
+            var reviews = data['reviews'];
 
 
             var titleField = document.getElementById('movie-title');

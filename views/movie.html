@@ -102,16 +102,29 @@
 
          $('#movie-datasetGet').click(function(){
 
-            if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')) {
+            if(!$('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')){
+
+                $.ajax({
+                  dataType: "json",
+                  url: "http://localhost:8080/allmovies",
+                  success: function(data){
+
+                     generateTableMovie(data);
+                        
+
+                  }
+
+                });  
+
+            }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && !$('#box5').prop('checked')) {
                 console.log("1");
 
                    $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/',
+                    url:'http://localhost:8080/allmoviesone/1/',
                     success: function(data) {
 
-                        console.log(data);
 
                         generateTableMovie(data);
 
@@ -138,7 +151,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/2/',
+                    url:'http://localhost:8080/allmoviesone/2/',
                     success: function(data) {
 
                         console.log(data);
@@ -169,7 +182,7 @@
                  $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/3/',
+                    url:'http://localhost:8080/allmoviesone/3/',
                     success: function(data) {
 
                         console.log(data);
@@ -187,7 +200,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/4/',
+                    url:'http://localhost:8080/allmoviesone/4/',
                     success: function(data) {
 
                         console.log(data);
@@ -204,7 +217,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/5/',
+                    url:'http://localhost:8080/allmoviesone/5/',
                     success: function(data) {
 
                         console.log(data);
@@ -221,7 +234,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/6/',
+                    url:'http://localhost:8080/allmoviesone/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -238,7 +251,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/3/6/',
+                    url:'http://localhost:8080/allmoviestwo/3/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -255,7 +268,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/6/',
+                    url:'http://localhost:8080/allmoviestwo/1/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -271,7 +284,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/4/',
+                    url:'http://localhost:8080/allmoviestwo/1/4/',
                     success: function(data) {
 
                         console.log(data);
@@ -288,7 +301,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/5/',
+                    url:'http://localhost:8080/allmoviestwo/1/5/',
                     success: function(data) {
 
                         console.log(data);
@@ -305,7 +318,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/2/6/',
+                    url:'http://localhost:8080/allmoviestwo/2/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -319,7 +332,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/2/4/',
+                    url:'http://localhost:8080/allmoviestwo/2/4/',
                     success: function(data) {
 
                         console.log(data);
@@ -335,7 +348,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/2/5/',
+                    url:'http://localhost:8080/allmoviestwo/2/5/',
                     success: function(data) {
 
                         console.log(data);
@@ -350,7 +363,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/3/4/',
+                    url:'http://localhost:8080/allmoviestwo/3/4/',
                     success: function(data) {
 
                         console.log(data);
@@ -365,7 +378,7 @@
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/3/5/',
+                    url:'http://localhost:8080/allmoviestwo/3/5/',
                     success: function(data) {
 
                         console.log(data);
