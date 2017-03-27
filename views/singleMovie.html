@@ -50,6 +50,9 @@
                   <p id='movie-comments'>
                       <div class="container form-group" id="comments-Display"></div>
                   </p>
+                  <p id='movie-reviews'>
+                      <div class="container form-group" id="reviews-Display"></div>
+                  </p>
                   <p><strong>Write your reviews below </strong>(800 character limit) :</p>
 
                   <div class="container form-group">
@@ -110,10 +113,10 @@
 
                             var userReview = {};
                             userReview['text'] = userText;
-                            userReview['rating'] = userRating;
-                            userReview['user'] = "Beauty and the Beast";
-                            userReview['movietitle'] = movieTitle;
-                            userReview['releasedate'] = movieDate;
+                            userReview['rating'] = parseInt(userRating);
+                            userReview['accountName'] = "foobar";
+                            userReview['title'] = movieTitle;
+                            userReview['releaseDate'] = movieDate;
 
                             console.log(userReview);
                             
@@ -121,7 +124,7 @@
                                 type:'POST',
                                 dataType: 'json',
                                 contentType: "application/json",
-                                url:'http://localhost:8080/postreview/',
+                                url:'http://localhost:8080/postreview',
                                 data:JSON.stringify(userReview),
                                 success: function(data) {
                                     console.log("postReview ajax");
@@ -196,6 +199,7 @@
             var director = data['director'];
             var distributedcompany = data['company'];
             var comments = data['comments']; //comments is a array
+            var reviews = data['text'];
 
 
             var titleField = document.getElementById('movie-title');
@@ -204,67 +208,121 @@
             var distributedcompanyField = document.getElementById('movie-distributedcompany');
 
             var commentsField = document.getElementById('movie-comments');
+            var reviewsField = document.getElementById('movie-reviews');
 
             titleField.innerHTML = title;
             releasedateField.innerHTML = "<strong>Release Date : </strong>" + releasedate;
             directorField.innerHTML = "<strong>Director : </strong>" + director;
             distributedcompanyField.innerHTML = "<strong>Distributed Company : </strong>" + distributedcompany;
             commentsField.innerHTML = "<strong>Comments : </strong>";
-            // generateTable(comments);
+            generateCommentsTable(comments);
+            reviewsField.innerHTML =  "<strong>Reviews : </strong>";
+            generateReviewTable(reviews);
 
 
          }
 
-        // function generateTable(data) {
-        // var columns = [];
-        // Object.keys(data[0]).forEach(function (title) {
-        //     columns.push({
-        //         head: title,
-        //         cl: "title",
-        //         html: function (d) {
-        //             return d[title]
-        //         }
-        //     });
-        // });
-        // var container = d3.select("#comments-Display");
-        // container.html("");
-        // container.selectAll("*").remove();
-        // var table = container.append("table").style("margin", "auto");
+        function generateCommentsTable(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#comments-Display");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
 
-        // table.append("thead").append("tr")
-        //     .selectAll("th")
-        //     .data(columns).enter()
-        //     .append("th")
-        //     .attr("class", function (d) {
-        //         return d["cl"]
-        //     })
-        //     .text(function (d) {
-        //         return d["head"]
-        //     });
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
 
-        // table.append("tbody")
-        //     .selectAll("tr")
-        //     .data(data).enter()
-        //     .append("tr")
-        //     .selectAll("td")
-        //     .data(function (row, i) {
-        //         return columns.map(function (c) {
-        //             // compute cell values for this specific row
-        //             var cell = {};
-        //             d3.keys(c).forEach(function (k) {
-        //                 cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
-        //             });
-        //             return cell;
-        //         });
-        //     }).enter()
-        //     .append("td")
-        //     .html(function (d) {
-        //         return d["html"]
-        //     })
-        //     .attr("class", function (d) {
-        //         return d["cl"]
-        //     });
-        // }
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
+
+        function generateReviewTable(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#reviews-Display");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
 
     </script>
 </body>

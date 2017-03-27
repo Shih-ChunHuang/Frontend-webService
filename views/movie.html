@@ -250,12 +250,12 @@
 
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
 
-                console.log("145");
+                console.log("/1/6/");
 
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/4/5/',
+                    url:'http://localhost:8080/allmovies/1/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -266,7 +266,7 @@
                 })
 
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
-                console.log("14");
+                console.log("/1/4/");
 
                 $.ajax({
                     dataType: 'json',
@@ -283,7 +283,7 @@
 
             }else if($('#box1').prop('checked') && !$('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
 
-                console.log("15");
+                console.log("/1/5/");
 
                 $.ajax({
                     dataType: 'json',
@@ -300,12 +300,12 @@
 
             }else if (!$('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && $('#box5').prop('checked')){
 
-                console.log("245");
+                console.log("/2/6/");
 
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/2/4/5/',
+                    url:'http://localhost:8080/allmovies/2/6/',
                     success: function(data) {
 
                         console.log(data);
@@ -345,12 +345,12 @@
                  }
                 })
             }else if($('#box1').prop('checked') && $('#box2').prop('checked') && $('#box4').prop('checked') && !$('#box5').prop('checked')){
-                console.log("124");
+                console.log("/3/4/");
 
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/2/4/',
+                    url:'http://localhost:8080/allmovies/3/4/',
                     success: function(data) {
 
                         console.log(data);
@@ -360,12 +360,12 @@
                  }
                 })
             }else if($('#box1').prop('checked') && $('#box2').prop('checked') && !$('#box4').prop('checked') && $('#box5').prop('checked')){
-                console.log("125");
+                console.log("/3/5/");
 
                 $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/allmovies/1/2/5/',
+                    url:'http://localhost:8080/allmovies/3/5/',
                     success: function(data) {
 
                         console.log(data);
