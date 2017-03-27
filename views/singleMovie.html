@@ -50,18 +50,20 @@
                   <p id='movie-comments'>
                       <div class="container form-group" id="comments-Display"></div>
                   </p>
-                  <p><strong>Write your reviews here:</strong></p>
-                  
+                  <p><strong>Write your reviews below </strong>(800 character limit) :</p>
+
                   <div class="container form-group">
                         <p style="float: left;padding-right: 20px">Give your ratings between 1(lowest) to 5(highest):</p>
                     
 
-                      <input type='text' name="rating" width="50px" id="user-rating"></input>
+                      <input type='text' name="rating" id="user-rating"></input>
+
+
                         
-                      <p><textarea id="reviewBox" name="textarea" rows="10" cols="100" maxlength="300">(800 character limit)</textarea></p>
+                      <p><textarea id="reviewBox" name="textarea" rows="10" cols="100" maxlength="300"></textarea></p>
 
 
-                      <p><a class="btn btn-primary btn-lg" role="button">Submit</a></p>
+                      <p><button class="btn btn-primary btn-lg" role="button" id="review-submission">Submit</button></p>
             
                  </div>
         </div>
@@ -74,10 +76,84 @@
 
             var movieinfo = parseMoiveTitle();
             getMoiveData(movieinfo);
-
-            
+            postReview(movieinfo);
 
         });
+
+        function postReview(movieinfo){
+
+            var tempArray = movieinfo.split('/');
+
+            var movieTitle = tempArray[0];
+            var movieDate = tempArray[1];
+
+
+            $('#review-submission').click(function(){
+
+                var userRating = $('#user-rating').val();
+                console.log(typeof(userRating));
+
+                var userText = $('#reviewBox').val();
+                console.log(userText);
+
+               if (userRating != ""){
+
+                    if ($.isNumeric(userRating)){
+
+                        console.log('is a number');
+
+                        if (userText != ""){
+
+                            console.log("testing inside postReview");
+
+                           
+
+                            var userReview = {};
+                            userReview['text'] = userText;
+                            userReview['rating'] = userRating;
+                            userReview['user'] = "Beauty and the Beast";
+                            userReview['movietitle'] = movieTitle;
+                            userReview['releasedate'] = movieDate;
+
+                            console.log(userReview);
+                            
+                            $.ajax({
+                                type:'POST',
+                                dataType: 'json',
+                                contentType: "application/json",
+                                url:'http://localhost:8080/postreview/',
+                                data:JSON.stringify(userReview),
+                                success: function(data) {
+                                    console.log("postReview ajax");
+                                    
+                                }
+                            }).fail(function(e){
+                                alert("Bad Request");
+                            })
+
+
+                        }else {
+                             
+                             alert("Please enter your review.");
+                            
+                        }
+
+                    }else{
+
+                        alert("Please enter a valid rating.");
+                    }
+
+
+               }else {
+                 alert("Please enter a valid rating.");
+               }
+
+            });
+
+           
+
+
+        }
 
         function parseMoiveTitle() {
             var query = window.location.search.substring(1);
@@ -134,61 +210,61 @@
             directorField.innerHTML = "<strong>Director : </strong>" + director;
             distributedcompanyField.innerHTML = "<strong>Distributed Company : </strong>" + distributedcompany;
             commentsField.innerHTML = "<strong>Comments : </strong>";
-            generateTable(comments);
+            // generateTable(comments);
 
 
          }
 
-        function generateTable(data) {
-        var columns = [];
-        Object.keys(data[0]).forEach(function (title) {
-            columns.push({
-                head: title,
-                cl: "title",
-                html: function (d) {
-                    return d[title]
-                }
-            });
-        });
-        var container = d3.select("#comments-Display");
-        container.html("");
-        container.selectAll("*").remove();
-        var table = container.append("table").style("margin", "auto");
+        // function generateTable(data) {
+        // var columns = [];
+        // Object.keys(data[0]).forEach(function (title) {
+        //     columns.push({
+        //         head: title,
+        //         cl: "title",
+        //         html: function (d) {
+        //             return d[title]
+        //         }
+        //     });
+        // });
+        // var container = d3.select("#comments-Display");
+        // container.html("");
+        // container.selectAll("*").remove();
+        // var table = container.append("table").style("margin", "auto");
 
-        table.append("thead").append("tr")
-            .selectAll("th")
-            .data(columns).enter()
-            .append("th")
-            .attr("class", function (d) {
-                return d["cl"]
-            })
-            .text(function (d) {
-                return d["head"]
-            });
+        // table.append("thead").append("tr")
+        //     .selectAll("th")
+        //     .data(columns).enter()
+        //     .append("th")
+        //     .attr("class", function (d) {
+        //         return d["cl"]
+        //     })
+        //     .text(function (d) {
+        //         return d["head"]
+        //     });
 
-        table.append("tbody")
-            .selectAll("tr")
-            .data(data).enter()
-            .append("tr")
-            .selectAll("td")
-            .data(function (row, i) {
-                return columns.map(function (c) {
-                    // compute cell values for this specific row
-                    var cell = {};
-                    d3.keys(c).forEach(function (k) {
-                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
-                    });
-                    return cell;
-                });
-            }).enter()
-            .append("td")
-            .html(function (d) {
-                return d["html"]
-            })
-            .attr("class", function (d) {
-                return d["cl"]
-            });
-        }
+        // table.append("tbody")
+        //     .selectAll("tr")
+        //     .data(data).enter()
+        //     .append("tr")
+        //     .selectAll("td")
+        //     .data(function (row, i) {
+        //         return columns.map(function (c) {
+        //             // compute cell values for this specific row
+        //             var cell = {};
+        //             d3.keys(c).forEach(function (k) {
+        //                 cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+        //             });
+        //             return cell;
+        //         });
+        //     }).enter()
+        //     .append("td")
+        //     .html(function (d) {
+        //         return d["html"]
+        //     })
+        //     .attr("class", function (d) {
+        //         return d["cl"]
+        //     });
+        // }
 
     </script>
 </body>
@@ -209,5 +285,4 @@
                           </label>
                           <label class="btn btn-primary btn-lg">
                             <input type="radio" name="options" id="rating3" autocomplete="off">5
-                          </label>
-                        </div> -->
+                          </labe></div> -->
