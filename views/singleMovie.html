@@ -50,9 +50,31 @@
                   <p id='movie-comments'>
                       <div class="container form-group" id="comments-Display"></div>
                   </p>
+                 
                   <p id='movie-reviews'>
-                      <div class="container form-group" id="reviews-Display"></div>
-                  </p>
+
+                  		
+  				<div class='container'>
+			    <select class="form-control" id="rating-viewing" style="width: 200px">
+                <option selected="selected">I want to know about...</option>
+                <option value="rating-query1">Get the highest rating</option>
+                <option value="rating-query2">Get the lowest rating</option>
+                <option value="rating-query3">Get the average rating</option>
+                <option value="rating-query4">Get the sum of all ratings</option>
+                <option value="rating-query5">Get the number of ratings</option>
+            	</select>
+
+            	<button type="button" class="btn btn-primary" id="ratingGet" style="margin-top: 10px;">Get Rating</button>
+            	</div>
+			    
+			    <p><div class="ratingBox myBoxColor" style='position:relative
+			    ;margin-left: 15px' id="rating-dataDisplay"></div></p>
+			    
+
+                <div class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
+                 
+				</div>
+
                   <p><strong>Write your reviews below </strong>(800 character limit) :</p>
 
                   <div class="container form-group">
@@ -80,8 +102,91 @@
             var movieinfo = parseMoiveTitle();
             getMoiveData(movieinfo);
             postReview(movieinfo);
+            getRating(movieinfo);
 
         });
+
+        function getRating(movieinfo){
+
+
+        	$('#ratingGet').click(function(){
+
+        		var ratingQuery = $('#rating-viewing').val();
+
+        		if (ratingQuery == "I want to know about..."){
+
+        			alert("Please choose one");
+
+        		}else if (ratingQuery == "rating-query1"){
+
+        			$.ajax({
+		                dataType: 'json',
+		                contentType: "application/json",
+		                url:'http://localhost:8080/rating/' + movieinfo + '/max',
+		                success: function(data) {
+		                    console.log("testing inside max");
+		                    $("#rating-dataDisplay").html(data['rating']);
+		                   
+		                }
+		            })
+
+        		}else if (ratingQuery == "rating-query2"){
+
+        			$.ajax({
+		                dataType: 'json',
+		                contentType: "application/json",
+		                url:'http://localhost:8080/rating/' + movieinfo + '/min',
+		                success: function(data) {
+		                    console.log("testing inside min");
+		                    $("#rating-dataDisplay").html(data['rating']);
+		                   
+		                }
+		            })
+
+        		}else if (ratingQuery == "rating-query3"){
+
+        			$.ajax({
+		                dataType: 'json',
+		                contentType: "application/json",
+		                url:'http://localhost:8080/rating/' + movieinfo + '/avg',
+		                success: function(data) {
+		                    console.log("testing inside avg");
+		                    console.log(data);
+		                    $("#rating-dataDisplay").html(data['rating']);
+		                   
+		                }
+		            })
+
+        		}else if (ratingQuery == "rating-query4"){
+
+        			$.ajax({
+		                dataType: 'json',
+		                contentType: "application/json",
+		                url:'http://localhost:8080/rating/' + movieinfo + '/sum',
+		                success: function(data) {
+		                    console.log("testing inside sum");
+		                    $("#rating-dataDisplay").html(data['rating']);
+		                   
+		                }
+		            })
+
+        		}else if (ratingQuery == "rating-query5"){
+
+        			$.ajax({
+		                dataType: 'json',
+		                contentType: "application/json",
+		                url:'http://localhost:8080/rating/' + movieinfo + '/count',
+		                success: function(data) {
+		                    console.log("testing inside count");
+		                    $("#rating-dataDisplay").html(data['rating']);
+		                   
+		                }
+		            })
+
+        		}
+
+        	})
+        }
 
         function postReview(movieinfo){
 

@@ -15,6 +15,17 @@ width: 100%;}
 
 }
 
+.ratingBox{
+
+    border: none;
+    padding: 5px;
+    font: 62px sans-serif;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+
+}
+
 
 .myBoxColor{
     background-color: white;

@@ -46,7 +46,7 @@
         <div id="dataset">
         <div class="container form-group">
             
-            <div class="form-group col-lg-6" style="margin-top: 2em">
+            <div class="form-group col-lg-4" style="margin-top: 2em">
             <p><strong>Show...</strong></p>
                 
                     <div class="form-check form-check-inline">
@@ -87,6 +87,80 @@
 
                 </div>
 
+
+                <div class="form-group col-lg-6" style="float: right; padding-top: 25px;" id="group-by">
+                    <div class="form-check">
+                    <p><strong>?...</strong></p>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMax"  value="groupby-max">
+                        max rating for each
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMin" value="groupby-min">
+                        min rating for each                      
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupAvg" value="groupby-avg">
+                        average rating for each
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupSum" value="groupby-sum">
+                        sum of all ratings for each
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupNum" value="groupby-num">
+                        number of ratings for each
+                      </label>
+                    </div> 
+                </div>
+
+                <div class="form-group col-lg-6" style="float: right; padding-top: 25px;" id="getNestedPart">
+                    <div class="form-check">
+                    <p><strong>And get the...</strong></p>
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getMax" value="get-max">
+                        max rating among all movies
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getMin" value="get-min">
+                        min rating among all movies
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getAvg" value="get-avg">
+                       average rating among all movies
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getSum" value="get-sum">
+                        sum of ratings among all movies 
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getNum" value="get-num">
+                        number of ratings among all movies
+                      </label>
+                    </div>
+
+                    <div><button type="button" class="btn btn-primary" id="nestedAggGet" style="margin-top: 2em;float: left;" >Get Data</button></div>
+                </div>
+
+
+
+
                 
             </div>
         </div>
@@ -99,6 +173,16 @@
     </div>
 </div>
 <script type="text/javascript">
+
+         $('#nestedAggGet').click(function(){
+
+            if($('#radio_button').is(':checked')) { alert("it's checked"); }
+            //document.getElementByid("id").checked
+
+           
+
+           
+         })
 
          $('#movie-datasetGet').click(function(){
 
