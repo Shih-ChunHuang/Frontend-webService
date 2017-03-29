@@ -85,7 +85,7 @@
 
 
                         
-                      <p><textarea id="reviewBox" name="textarea" rows="10" cols="100" maxlength="300"></textarea></p>
+                      <p><textarea id="reviewBox" name="textarea" rows="10" cols="90" maxlength="300"></textarea></p>
 
 
                       <p><button class="btn btn-primary btn-lg" role="button" id="review-submission">Submit</button></p>
@@ -112,78 +112,52 @@
         	$('#ratingGet').click(function(){
 
         		var ratingQuery = $('#rating-viewing').val();
+                var path = "";
 
         		if (ratingQuery == "I want to know about..."){
 
         			alert("Please choose one");
+                    return;
 
         		}else if (ratingQuery == "rating-query1"){
 
-        			$.ajax({
-		                dataType: 'json',
-		                contentType: "application/json",
-		                url:'http://localhost:8080/rating/' + movieinfo + '/max',
-		                success: function(data) {
-		                    console.log("testing inside max");
-		                    $("#rating-dataDisplay").html(data['rating']);
-		                   
-		                }
-		            })
+                    path = '/max';
+
 
         		}else if (ratingQuery == "rating-query2"){
 
-        			$.ajax({
-		                dataType: 'json',
-		                contentType: "application/json",
-		                url:'http://localhost:8080/rating/' + movieinfo + '/min',
-		                success: function(data) {
-		                    console.log("testing inside min");
-		                    $("#rating-dataDisplay").html(data['rating']);
-		                   
-		                }
-		            })
+                    path = '/min';
+
+        			
 
         		}else if (ratingQuery == "rating-query3"){
 
-        			$.ajax({
-		                dataType: 'json',
-		                contentType: "application/json",
-		                url:'http://localhost:8080/rating/' + movieinfo + '/avg',
-		                success: function(data) {
-		                    console.log("testing inside avg");
-		                    console.log(data);
-		                    $("#rating-dataDisplay").html(data['rating']);
-		                   
-		                }
-		            })
+                    path = '/avg';
 
+        		
         		}else if (ratingQuery == "rating-query4"){
 
-        			$.ajax({
-		                dataType: 'json',
-		                contentType: "application/json",
-		                url:'http://localhost:8080/rating/' + movieinfo + '/sum',
-		                success: function(data) {
-		                    console.log("testing inside sum");
-		                    $("#rating-dataDisplay").html(data['rating']);
-		                   
-		                }
-		            })
+                    path = '/sum'
+
+        			
 
         		}else if (ratingQuery == "rating-query5"){
 
-        			$.ajax({
-		                dataType: 'json',
-		                contentType: "application/json",
-		                url:'http://localhost:8080/rating/' + movieinfo + '/count',
-		                success: function(data) {
-		                    console.log("testing inside count");
-		                    $("#rating-dataDisplay").html(data['rating']);
-		                   
-		                }
-		            })
+                    path = '/count';
+
 
         		}
+
+                $.ajax({
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url:'http://localhost:8080/rating/' + movieinfo + path,
+                        success: function(data) {
+                            console.log("testing inside count");
+                            $("#rating-dataDisplay").html(data['rating']);
+                           
+                        }
+                    })
 
         	})
         }
@@ -327,7 +301,7 @@
             commentsField.innerHTML = "<strong>Comments : </strong>";
             generateCommentsTable(comments);
             reviewsField.innerHTML =  "<strong>Reviews : </strong>";
-            generateReviewTable(reviews);
+            generateReviewTable(reviews); // TODO: need to take in user accountname 
 
 
          }
@@ -414,6 +388,41 @@
             .selectAll("tr")
             .data(data).enter()
             .append("tr")
+            .on("click", function(d) { 
+
+             
+                
+                console.log(d['id']);
+                console.log(d['accountName']);
+
+                var id = d['id'];
+                var accountname = d['accountName'];
+                if (accountname == 'bobbytables'){ // TODO: change to user account name argument which should take in from where it is calling this method.
+
+                        $.ajax({
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url:'http://localhost:8080/getreview/' + id,
+                        success: function(data) {
+                            console.log("edit one review");
+                            console.log(data);
+
+                            $('#user-rating').html(data['rating']);
+                            $('#reviewBox').html(data['reviews']); // not sure if it's text or reviews
+
+                        }
+                    })
+
+                }else {
+                    alert('You cannot edit this review');
+                    return;
+                }
+                
+            
+                 
+
+
+             })
             .selectAll("td")
             .data(function (row, i) {
                 return columns.map(function (c) {
