@@ -118,6 +118,9 @@
               </div>
             </div>
           </div>
+          <div hidden class="alert alert-danger login-fail" role="alert">
+            <p class="alert-lin">Incorrect password or username</p>
+          </div>
         </div>
       </div>
     </div>
@@ -129,35 +132,40 @@
       $(document).ready(function() {
         
         $('#login-user-submit').click(function() {
+            $('.login-fail').stop(true, true).fadeOut();
+
             var username = document.getElementsByClassName('form-control username')[0].value;
             var password = document.getElementsByClassName('form-control password')[0].value;
             console.log('username: ' + username);
             console.log('password: ' + password);
-            var cred = [username, password];
+            var cred = {};
+            cred['username'] = username;
+            cred['password'] = password;
 
-            var testPath = "login";
+
+            var path = "login";
 
 
             $.ajax({
               // Should be POST when we contact actual backend
-              type: "GET",
-              url: "http://localhost:3000/" + testPath,
-              //data: JSON.stringify(cred),
-              //contentType: "application/json; charset=utf-8",
-              //dataType: "json"
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "http://localhost:8080/" + path,
+              data:JSON.stringify(cred),
             }).then(function(data) {
-              var valid = data['valid'];
+              console.log(data);
 
-              console.log(valid);
+              if (data == true) {
+                console.log('login successful');
+                var params = 'username=' + username;
+                window.location.href = 'index.html?' + params;
 
-              if (valid) {
-                // Take path into user account options
-                console.log("Valid");
-
-            }
+              } else {
+                $('.login-fail').show();
+                $('.login-fail').fadeOut(3000);
+              }
               
-
-
             });
         });
 

@@ -118,3 +118,8 @@ body {
 #login-admin-submit:hover{
 	opacity: 1.0;
 }
+
+.alert-lin {
+	text-align: middle;
+	color: white;
+}
