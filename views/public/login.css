@@ -119,7 +119,7 @@ body {
 	opacity: 1.0;
 }
 
-.login-fail {
-	text-align: center;
+.alert-lin {
+	text-align: middle;
 	color: white;
 }
