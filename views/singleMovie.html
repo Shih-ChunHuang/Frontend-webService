@@ -84,11 +84,13 @@
                       <input type='text' name="rating" id="user-rating"></input>
 
 
-                        
+                     
                       <p><textarea id="reviewBox" name="textarea" rows="10" cols="90" maxlength="300"></textarea></p>
 
 
                       <p><button class="btn btn-primary btn-lg" role="button" id="review-submission">Submit</button></p>
+
+                      <p><button class="btn btn-primary btn-lg" role="button" id="edit-submission">Edit</button></p>
             
                  </div>
         </div>
@@ -164,6 +166,9 @@
 
         function postReview(movieinfo){
 
+            $('#edit-submission').attr("disabled", true);
+            $('#review-submission').attr("disabled", false);
+
             var tempArray = movieinfo.split('/');
 
             var movieTitle = tempArray[0];
@@ -211,7 +216,8 @@
                                         alert("Submission succeed");
                                         window.location.reload();
                                     }else{
-                                        alert("Please enter a number between 1 and 5")
+                                        alert("Please enter a number between 1 and 5");
+                                        return;
                                     }
                                     
   
@@ -222,17 +228,19 @@
                         }else {
                              
                              alert("Please enter your review.");
-                            
+                             return;
                         }
 
                     }else{
 
                         alert("Please enter a valid rating.");
+                        return;
                     }
 
 
                }else {
                  alert("Please enter a valid rating.");
+                 return;
                }
 
             });
@@ -390,37 +398,7 @@
             .append("tr")
             .on("click", function(d) { 
 
-             
-                
-                console.log(d['id']);
-                console.log(d['accountName']);
-
-                var id = d['id'];
-                var accountname = d['accountName'];
-                if (accountname == 'bobbytables'){ // TODO: change to user account name argument which should take in from where it is calling this method.
-
-                        $.ajax({
-                        dataType: 'json',
-                        contentType: "application/json",
-                        url:'http://localhost:8080/getreview/' + id,
-                        success: function(data) {
-                            console.log("edit one review");
-                            console.log(data);
-
-                            $('#user-rating').html(data['rating']);
-                            $('#reviewBox').html(data['reviews']); // not sure if it's text or reviews
-
-                        }
-                    })
-
-                }else {
-                    alert('You cannot edit this review');
-                    return;
-                }
-                
-            
-                 
-
+                editReview(d);
 
              })
             .selectAll("td")
@@ -442,6 +420,135 @@
                 return d["cl"]
             });
         }
+
+
+
+        
+        function editReview(review){
+
+                // document.getElementById("#review-submission").style.visibility = "hidden";
+                
+
+                console.log(review['id']);
+                console.log(review['accountName']);
+
+                var id = review['id'];
+                var accountname = review['accountName'];
+                if (accountname == 'helloworld'){ // TODO: change to user account name argument which should take in from where it is calling this method.
+                    var reviewBoxField = document.getElementById("#reviewBox");
+                    var userratingField = document.getElementById("#user-rating");
+
+
+                        $.ajax({
+                        dataType: 'json',
+                        contentType: "application/json",
+                        url:'http://localhost:8080/getreview/' + id,
+                        success: function(data) {
+                            
+                            console.log(data);
+                            var rating = data['rating'];
+                            var text = data['text'];
+
+                            $('#user-rating').val(rating);
+                            $('#reviewBox').val(text);
+
+                            rePostReview(id);
+
+                        }
+                    })
+
+                }else {
+                    alert('You cannot edit this review');
+                    return;
+                }
+                
+        }
+
+        function rePostReview(id){
+
+            $('#edit-submission').attr("disabled", false);
+
+            $('#review-submission').attr("disabled", true);
+
+            $('#edit-submission').click(function(){
+
+
+                var userEditRating = $('#user-rating').val();
+                console.log(typeof(userEditRating));
+
+                var userEditText = $('#reviewBox').val();
+                console.log(userEditText);
+
+            
+
+               if (userEditRating != ""){
+
+                    if ($.isNumeric(userEditRating)){
+
+                        console.log('is a number');
+
+                        if (userEditText != ""){
+
+                            console.log("testing inside userEditReview");
+
+                        
+                            var userEditReview = {};
+                            userEditReview['text'] = userEditText;
+                            userEditReview['rating'] = parseInt(userEditRating);
+                            userEditReview['id'] = id;
+                            
+
+                            console.log(userEditReview);
+                            
+                            $.ajax({
+                                type:'POST',
+                                dataType: 'json',
+                                contentType: "application/json",
+                                url:'http://localhost:8080/updatereview',
+                                data:JSON.stringify(userEditReview),
+                                success: function(data) {
+                                    console.log(data);
+                                    if (data == 1){ 
+                                        alert("Edit succeed");
+                                        window.location.reload();
+                                    }else{
+                                        alert("Please enter a number between 1 and 5");
+                                        return;
+                                    }
+                                    
+  
+                                }
+                            })
+
+
+                        }else {
+                             
+                             alert("Please enter your review.");
+                             return;
+                        }
+
+                    }else{
+
+                        alert("Please enter a valid rating.");
+                        return;
+                    }
+
+
+               }else {
+                 alert("Please enter a valid rating.");
+                 return;
+               }
+
+
+
+
+            })
+        }
+
+
+
+
+
 
     </script>
 </body>
