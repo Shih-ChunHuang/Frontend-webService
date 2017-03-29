@@ -92,31 +92,31 @@
                     <div class="form-check">
                     <p><strong>?...</strong></p>
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMax"  value="groupby-max">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMax"  value="max">
                         max rating for each
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMin" value="groupby-min">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupMin" value="min">
                         min rating for each                      
                         </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupAvg" value="groupby-avg">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupAvg" value="avg">
                         average rating for each
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupSum" value="groupby-sum">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupSum" value="sum">
                         sum of all ratings for each
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupNum" value="groupby-num">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="groupNum" value="count">
                         number of ratings for each
                       </label>
                     </div> 
@@ -126,36 +126,36 @@
                     <div class="form-check">
                     <p><strong>And get the...</strong></p>
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="testRadios" id="getMax" value="get-max">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getMax" value="max">
                         max rating among all movies
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="testRadios" id="getMin" value="get-min">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getMin" value="min">
                         min rating among all movies
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="testRadios" id="getAvg" value="get-avg">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getAvg" value="avg">
                        average rating among all movies
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="testRadios" id="getSum" value="get-sum">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getSum" value="sum">
                         sum of ratings among all movies 
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="testRadios" id="getNum" value="get-num">
+                        <input class="form-check-input" type="radio" name="testRadios" id="getNum" value="count">
                         number of ratings among all movies
                       </label>
                     </div>
 
-                    <div><button type="button" class="btn btn-primary" id="nestedAggGet" style="margin-top: 2em;float: left;" >Get Data</button></div>
+                    <div><button type="button" class="btn btn-primary" id="nestedGet" style="margin-top: 2em;float: left;" >Get Data</button></div>
                 </div>
 
 
@@ -174,15 +174,124 @@
 </div>
 <script type="text/javascript">
 
-         $('#nestedAggGet').click(function(){
+         $('#nestedGet').click(function(){
 
-            if($('#radio_button').is(':checked')) { alert("it's checked"); }
-            //document.getElementByid("id").checked
 
-           
+            var firstMaxVal = $('#groupMax').val();
+            var firstMinVal = $('#groupMin').val();
+            var firstAvgVal = $('#groupAvg').val();
+            var firstSumVal = $('#groupSum').val();
+            var firstCountVal = $('#groupNum').val();
 
-           
+            var secondMaxVal = $('#getMax').val();
+            var secondMinVal = $('#getMin').val();
+            var secondAvgVal = $('#getAvg').val();
+            var secondSumVal = $('#getSum').val();
+            var secondCountVal = $('#getNum').val();
+
+            var firstMax = $('#groupMax').is(':checked');
+            var firstMin = $('#groupMin').is(':checked');
+            var firstAvg = $('#groupAvg').is(':checked');
+            var firstSum = $('#groupSum').is(':checked');
+            var firstCount = $('#groupNum').is(':checked');
+
+            var secondMax = $('#getMax').is(':checked');
+            var secondMin = $('#getMin').is(':checked');
+            var secondAvg = $('#getAvg').is(':checked');
+            var secondSum = $('#getSum').is(':checked');
+            var secondCount = $('#getNum').is(':checked');
+
+            var path = "";
+
+            var secondSection = [];
+
+            secondSection.push(secondMax);
+            secondSection.push(secondMin);  
+            secondSection.push(secondAvg);  
+            secondSection.push(secondSum);
+            secondSection.push(secondCount);
+
+            var secondSectionVal = [];
+            secondSectionVal.push(secondMaxVal);
+            secondSectionVal.push(secondMinVal);
+            secondSectionVal.push(secondAvgVal);
+            secondSectionVal.push(secondSumVal);
+            secondSectionVal.push(secondCountVal);
+
+            if(!firstMax && !firstMin && !firstAvg && !firstSum && !firstCount){
+                alert("Please choose one from first section");
+                return;
+            }else if(!secondMax && !secondMin && !secondAvg && !secondSum && !secondCount){
+
+                alert("Please choose one from second section");
+                return;
+
+            }else {
+
+                if (firstMax){
+                for(let i in secondSection){
+                    if(secondSection[i] == true){
+                        path = firstMaxVal + "/" +secondSectionVal[i];
+                        break;
+                    }
+                }
+                }else if(firstMin){
+                    for(let i in secondSection){
+                        if(secondSection[i] == true){
+                            path = firstMinVal + "/" +secondSectionVal[i];
+                            break;
+                        }
+                    }
+                }else if(firstAvg){
+                    for(let i in secondSection){
+                        if(secondSection[i] == true){
+                            path = firstAvgVal + "/" +secondSectionVal[i];
+                            break;
+                        }
+                    }
+                }else if(firstSum){
+                    for(let i in secondSection){
+                        if(secondSection[i] == true){
+                            path = firstSumVal + "/" +secondSectionVal[i];
+                            break;
+                        }
+                    }
+                }else if(firstCount){
+                    for(let i in secondSection){
+                        if(secondSection[i] == true){
+                            path = firstCountVal + "/" +secondSectionVal[i];
+                            break;
+                        }
+                    }
+                }
+            }
+
+            console.log(path);
+
+            getResult(path);
+            
          })
+
+         function getResult(path){
+
+            console.log("inside getResult");
+
+             $.ajax({
+                    type:"GET",
+                  dataType: "json",
+                  url: "http://localhost:8080/nested/" + path,
+                  success: function(data){
+
+                    console.log(data);
+
+                    generateTableMovie(data);
+                        
+
+                  }
+
+                });  
+
+         }
 
          $('#movie-datasetGet').click(function(){
 
