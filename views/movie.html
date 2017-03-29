@@ -81,7 +81,11 @@
 
                     <select class="form-control" id="movie-querySet">
                         <option selected="selected">I want to know about...</option>
-                        <option value="movie-query1">Get Movie(s) Rated 5 By All Users</option>
+                        <option value="movie-query5">Get Movies Rated 5 By All Users</option>
+                        <option value="movie-query4">Get Movies Rated 4 By All Users</option>
+                        <option value="movie-query3">Get Movies Rated 3 By All Users</option>
+                        <option value="movie-query2">Get Movies Rated 2 By All Users</option>
+                        <option value="movie-query1">Get Movie Rated 1 By All Users</option>
                     </select>
                     <button type="button" class="btn btn-primary" id="queryGet" style="margin-top: 2em">Get Data</button>
 
@@ -277,7 +281,7 @@
             console.log("inside getResult");
 
              $.ajax({
-                    type:"GET",
+                  type:"GET",
                   dataType: "json",
                   url: "http://localhost:8080/nested/" + path,
                   success: function(data){
@@ -596,13 +600,39 @@
 
             if (query == "I want to know about..."){
                 alert("Please choose one");
+                return;
             }else {
-                if (query == 'movie-query1'){
+                var path = "";
+
+                if (query == 'movie-query5'){
+                    path = "5";
+                }else if(query == 'movie-query4'){
+                    path = "4"
+                }else if(query == 'movie-query3'){
+                    path = "3"
+                }else if(query == 'movie-query2'){
+                    path = "2"
+                }else if(query == 'movie-query1'){
+                    path = "1"
+                }
+
+                getQuery(path);
+            }
                     
-                    $.ajax({
+                 
+
+               
+        
+        });
+
+        function getQuery(path){
+
+            console.log('inside getQuery');
+
+            $.ajax({
                     dataType: 'json',
                     contentType: "application/json",
-                    url:'http://localhost:8080/ratedbyall/',
+                    url:'http://localhost:8080/ratedbyall2/' + path,
                     success: function(data) {
 
                         generateTableMovie(data);
@@ -623,36 +653,9 @@
                  }
                 })
 
-                }else if (query == 'movie-query2'){
-                    
-                        //     $.ajax({
-                        // dataType: 'json',
-                        // contentType: "application/json",
-                        // url:'http://localhost:8080/leastmovies/',
-                        // success: function(data) {
-   
-                        // var jsonObj = $.parseJSON(JSON.stringify(data));
-                        // var html = '<table border="1">';
-                        // $.each(jsonObj, function(key, value){
-                        //     html += '<tr>';
-                        //     html += '<td>' + key + '</td>';
-                        //     html += '<td>' + value + '</td>';
-                        //     html += '</tr>';
-                        // });
-                        // html += '</table>';
+        }
 
-                        // $('#actor-dataDisplay').html(html);
-                                
-                        
-                
-                    }
-            
-                
-            }
-        
-    });
-
-         function generateTableMovie(data) {
+        function generateTableMovie(data) {
         var columns = [];
         Object.keys(data[0]).forEach(function (title) {
             columns.push({
