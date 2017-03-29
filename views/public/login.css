@@ -118,3 +118,8 @@ body {
 #login-admin-submit:hover{
 	opacity: 1.0;
 }
+
+.login-fail {
+	text-align: center;
+	color: white;
+}
