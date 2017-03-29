@@ -66,7 +66,7 @@
                     
                     <div class="form-check form-check-inline">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" id="box4" value="attr2">&nbspReleased after year of 2000(inclusive)
+                        <input class="form-check-input" type="checkbox" id="box4" value="attr2">&nbspReleased after year of 2000 (inclusive)
                       </label>
                     </div>
                    
@@ -94,7 +94,7 @@
 
                 <div class="form-group col-lg-6" style="float: right; padding-top: 25px;" id="group-by">
                     <div class="form-check">
-                    <p><strong>?...</strong></p>
+                    <p><strong>For each movie get the ...</strong></p>
                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="groupMax"  value="max">
                         max rating for each
@@ -128,7 +128,7 @@
 
                 <div class="form-group col-lg-6" style="float: right; padding-top: 25px;" id="getNestedPart">
                     <div class="form-check">
-                    <p><strong>And get the...</strong></p>
+                    <p><strong>Then get the...</strong></p>
                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" name="testRadios" id="getMax" value="max">
                         max rating among all movies
@@ -288,7 +288,7 @@
 
                     console.log(data);
 
-                    generateTableMovie(data);
+                    generateTableMovieNoClick(data);
                         
                   }
 
@@ -548,6 +548,57 @@
               
 
              })
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
+
+        function generateTableMovieNoClick(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#movie-dataDisplay");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
             .selectAll("td")
             .data(function (row, i) {
                 return columns.map(function (c) {
