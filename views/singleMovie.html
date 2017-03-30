@@ -71,7 +71,7 @@
 			    ;margin-left: 15px' id="rating-dataDisplay"></div></p>
 			    
 
-                <div class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
+                <div hidden class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
                  
 				</div>
 
@@ -105,6 +105,8 @@
             getMoiveData(movieinfo);
             postReview(movieinfo);
             getRating(movieinfo);
+
+
 
         });
 
@@ -426,7 +428,6 @@
         
         function editReview(review){
 
-                // document.getElementById("#review-submission").style.visibility = "hidden";
                 
 
                 console.log(review['id']);

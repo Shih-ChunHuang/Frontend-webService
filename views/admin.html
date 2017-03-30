@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" href="./public/bootstrap.min.css">
+	<link rel="stylesheet" href="./public/main.css">
+	<script src="./public/jquery.min.js"></script>
+	<script src="./public/bootstrap.min.js"></script>
+	<script src="./public/d3.min.js"></script>
+	<script src="./public/main.js"></script>
+</head>
+<html>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand">Movie101 ADMIN CENTER</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+             <li><a href="login.html">Log out</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse test commit-->
+    </div>
+</nav>
+
+ <div class="panel-body">
+    <div class="container" style="margin-top: 50px">
+        <div class="jumbotron">
+            <div class="row">
+            
+               
+                    <div class='form-group'>
+                    	<label>Titles should be the same as the titles on the movie table</label>
+                        <input class="form-control" type="title" name="delete-target" placeholder="Movie Title" id="title"></input>
+                    </div>
+                    <div class='form-group'>
+                    	<label>yyyy-mm-dd (e.g. 2017-03-10)</label>
+                        <input class="form-control" type="releasedate" name="delete-target" placeholder="Movie Release Date" id="releasedate"></input>
+                    </div>
+
+                    <div><button type="button" class="btn btn-primary" id="toDelete" style="margin-top: 2em;float: left;" >Delete Data</button></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+      
+
+
+<div class="container" id="movieUpdate">
+    <div class="jumbotron">
+    <div><button type="button" class="btn btn-primary" id="getUpdate" style="margin-bottom:20px;float: left;" >Get Updated Data</button></div>
+    <div class="container form-group myBox myBoxColor" id="movie-dataDisplay"></div>
+    </div>
+
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+     $(document).ready(function() {
+
+         $("#movieUpdate").hide();
+
+        $('#toDelete').click(function () {
+
+            var title = $("#title").val();
+            var releasedate = $("#releasedate").val();
+
+            if (title == "" || releasedate == ""){
+
+                alert("Please enter target movie infomation.");
+                return;
+
+            }else{
+
+            
+                var path = title + "/" + releasedate;
+
+                $.ajax({
+                      type:'DELETE',
+                      contentType:'application/json',
+                      // dataType: 'text',
+                      url: "http://localhost:8080/deletemovie/" + path,
+                      success: function(data){
+
+						 console.log(data);
+
+						 if(data == 1){
+						 	alert("Delete succeed");
+                            $("#movieUpdate").show();
+	                     	return;
+						 }else if(data == 0){
+						 	alert("Delete cannot be processed becuase there is one or more review associated with this movie that you want to delete.");
+                            return;
+						 }else if (data == 2){
+                            alert("Input is not valid.");
+                         }
+
+                      }
+
+                    }); 
+            }
+
+        });
+
+        $("#getUpdate").click(function(){
+
+        	console.log("getUpdate");
+
+             $.ajax({
+                  dataType: "json",
+                  url: "http://localhost:8080/allmovies",
+                  success: function(data){
+
+                 
+                     generateTableMovieNoClick(data);
+                        
+
+                  }
+
+                }); 
+
+        })
+
+    })
+
+     function generateTableMovieNoClick(data) {
+        var columns = [];
+        Object.keys(data[0]).forEach(function (title) {
+            columns.push({
+                head: title,
+                cl: "title",
+                html: function (d) {
+                    return d[title]
+                }
+            });
+        });
+        var container = d3.select("#movie-dataDisplay");
+        container.html("");
+        container.selectAll("*").remove();
+        var table = container.append("table").style("margin", "auto");
+
+        table.append("thead").append("tr")
+            .selectAll("th")
+            .data(columns).enter()
+            .append("th")
+            .attr("class", function (d) {
+                return d["cl"]
+            })
+            .text(function (d) {
+                return d["head"]
+            });
+
+        table.append("tbody")
+            .selectAll("tr")
+            .data(data).enter()
+            .append("tr")
+            .selectAll("td")
+            .data(function (row, i) {
+                return columns.map(function (c) {
+                    // compute cell values for this specific row
+                    var cell = {};
+                    d3.keys(c).forEach(function (k) {
+                        cell[k] = typeof c[k] == "function" ? c[k](row, i) : c[k];
+                    });
+                    return cell;
+                });
+            }).enter()
+            .append("td")
+            .html(function (d) {
+                return d["html"]
+            })
+            .attr("class", function (d) {
+                return d["cl"]
+            });
+        }
+    
+    
+</script>
+</html>

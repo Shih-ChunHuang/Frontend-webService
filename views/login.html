@@ -174,6 +174,34 @@
             var password = document.getElementsByClassName('form-control password')[0].value;
             console.log('username: ' + username);
             console.log('password: ' + password);
+
+            var admin = {};
+            admin['username'] = username;
+            admin['password'] = password;
+
+            $.ajax({
+              // Should be POST when we contact actual backend
+              type: "POST",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              url: "http://localhost:8080/login",
+              data:JSON.stringify(admin),
+            }).then(function(data) {
+              console.log(data);
+
+              if (data == true) {
+                console.log('Admin login successful');
+                var params = 'username=' + username;
+                window.location.href = 'admin.html?' + params;
+
+              } else {
+                $('.login-fail').show();
+                $('.login-fail').fadeOut(3000);
+              }
+              
+            });
+
+      
         });
 
 
