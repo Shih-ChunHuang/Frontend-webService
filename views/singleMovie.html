@@ -35,8 +35,8 @@
                 <li><a href="login.html">Login or Register</a></li>
                 <li><a href="index.html" id="logout">Logout</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <!--For "Welcome, user ____" part-->
+            <ul class="nav navbar-nav navbar-right" id="welcome">
+                
             </ul>
         </div>
         <!--/.nav-collapse test commit-->
@@ -106,6 +106,7 @@
 
     <script>
         $(document).ready(function() {
+            $("#welcome").hide();
             $('#reviews-Box').hide();
             var path = "userExist";
 
@@ -130,6 +131,7 @@
               success: function(loginData) {
                 console.log("finished");
                 console.log("login name: " + loginData);
+
                 handleLoginSpecificDisplay(loginData);
 
               }, 
@@ -145,6 +147,8 @@
         function handleLoginSpecificDisplay(username) {
             if (username != null && username != '') {
                 $("#reviews-Box").show();
+                $("#welcome").show();
+                document.getElementById('welcome').innerHTML = "<li>Hi! " + username + "</li>";
             }
 
         }
@@ -239,7 +243,7 @@
                             var userReview = {};
                             userReview['text'] = userText;
                             userReview['rating'] = parseInt(userRating);
-                            userReview['accountName'] = "foobar";
+                            // userReview['accountName'] = "foobar";
                             userReview['title'] = movieTitle;
                             userReview['releaseDate'] = movieDate;
 
@@ -469,40 +473,51 @@
 
                 
 
-                console.log(review['id']);
-                console.log(review['accountName']);
+                // console.log(review['id']);
+                // console.log(review['accountName']);
 
                 var id = review['id'];
                 var accountname = review['accountName'];
-                if (accountname == 'helloworld'){ // TODO: change to user account name argument which should take in from where it is calling this method.
-                    var reviewBoxField = document.getElementById("#reviewBox");
-                    var userratingField = document.getElementById("#user-rating");
+                // if (accountname == 'helloworld'){ // TODO: change to user account name argument which should take in from where it is calling this method.
+                var reviewBoxField = document.getElementById("#reviewBox");
+                var userratingField = document.getElementById("#user-rating");
+
+                var path = id + "/" + accountname;
 
 
-                        $.ajax({
-                        dataType: 'json',
-                        contentType: "application/json",
-                        url:'http://localhost:8080/getreview/' + id,
-                        success: function(data) {
-                            
-                            console.log(data);
-                            var rating = data['rating'];
-                            var text = data['text'];
+                    $.ajax({
+                    
+                    url:'http://localhost:8080/getreview/' + path,
+                    success: function(data) {
 
-                            $('#user-rating').val(rating);
-                            $('#reviewBox').val(text);
+                        console.log("data: " + data);
 
-                            rePostReview(id);
+                        if (data === ""){
+                            alert('You cannot edit this review');
+                            return;
 
+                        }else {
+
+                                console.log(data);
+                                var rating = data['rating'];
+                                var text = data['text'];
+
+                                $('#user-rating').val(rating);
+                                $('#reviewBox').val(text);
+
+                                rePostReview(id);
                         }
-                    })
+                      }, error: function (textStatus, errorThrown) {
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                      }
 
-                }else {
-                    alert('You cannot edit this review');
-                    return;
-                }
+                  
+                });
+            
                 
         }
+    
 
         function rePostReview(id){
 
