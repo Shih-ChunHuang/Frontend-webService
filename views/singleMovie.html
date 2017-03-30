@@ -75,13 +75,11 @@
 			    ;margin-left: 15px' id="rating-dataDisplay"></div></p>
 			    
 
-<<<<<<< HEAD
-                <div hidden class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
-=======
-                <div class="container form-group reviews-box" style="padding-top: 50px" id="reviews-Display">
->>>>>>> 30bdf8cbad173e62b95f7998ef0d4d8f4e8f6302
-                 
 
+                <div class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
+
+                 
+                <div id="reviews-Box">
                   <p><strong>Write your reviews below </strong>(800 character limit) :</p>
 
                   <div class="container form-group">
@@ -101,12 +99,14 @@
             
                 </div>
                 </div>
+            </div>
 
 
     </div>
 
     <script>
         $(document).ready(function() {
+            $('#reviews-Box').hide();
             var path = "userExist";
 
             getLoggedInUser();
@@ -121,10 +121,7 @@
             logoutUser();
         });
 
-<<<<<<< HEAD
 
-
-=======
         function getLoggedInUser() {
             console.log("Called");
             var path = "userExist";
@@ -140,14 +137,14 @@
                 console.log(textStatus);
                 console.log(errorThrown);
               }
->>>>>>> 30bdf8cbad173e62b95f7998ef0d4d8f4e8f6302
+
         });
 
     }
 
         function handleLoginSpecificDisplay(username) {
             if (username != null && username != '') {
-                $("#reviews-Display").show();
+                $("#reviews-Box").show();
             }
 
         }
