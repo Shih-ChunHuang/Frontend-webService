@@ -3,9 +3,9 @@
 	<link rel="stylesheet" href="./public/bootstrap.min.css">
 	<link rel="stylesheet" href="./public/main.css">
 	<script src="./public/jquery.min.js"></script>
+    <script src="./public/main.js" type="text/javascript"></script>
 	<script src="./public/bootstrap.min.js"></script>
 	<script src="./public/d3.min.js"></script>
-	<script src="./public/main.js"></script>
 
 </head>
 <html>
@@ -33,13 +33,17 @@
                 </li>
                 
                 <li><a href="login.html">Login or Register</a></li>
+                <li><a href="index.html" id="logout">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <!--For "Welcome, user ____" part-->
             </ul>
         </div>
         <!--/.nav-collapse test commit-->
     </div>
 </nav>
 
-<div class="container">
+    <div class="container">
         <div class="jumbotron">
             
                 <div class="jumbotron">
@@ -71,9 +75,12 @@
 			    ;margin-left: 15px' id="rating-dataDisplay"></div></p>
 			    
 
+<<<<<<< HEAD
                 <div hidden class="container form-group" style="padding-top: 50px" id="reviews-Display"></div>
+=======
+                <div class="container form-group reviews-box" style="padding-top: 50px" id="reviews-Display">
+>>>>>>> 30bdf8cbad173e62b95f7998ef0d4d8f4e8f6302
                  
-				</div>
 
                   <p><strong>Write your reviews below </strong>(800 character limit) :</p>
 
@@ -92,23 +99,58 @@
 
                       <p><button class="btn btn-primary btn-lg" role="button" id="edit-submission">Edit</button></p>
             
-                 </div>
-        </div>
+                </div>
+                </div>
 
 
     </div>
 
     <script>
         $(document).ready(function() {
+            var path = "userExist";
 
+            getLoggedInUser();
             var movieinfo = parseMoiveTitle();
             getMoiveData(movieinfo);
             postReview(movieinfo);
-            getRating(movieinfo);
-
-
+            getRating(movieinfo);    
 
         });
+
+        $('#logout').click(function() {
+            logoutUser();
+        });
+
+<<<<<<< HEAD
+
+
+=======
+        function getLoggedInUser() {
+            console.log("Called");
+            var path = "userExist";
+            $.ajax({
+              url:'http://localhost:8080/' + path,
+              success: function(loginData) {
+                console.log("finished");
+                console.log("login name: " + loginData);
+                handleLoginSpecificDisplay(loginData);
+
+              }, 
+              error: function (textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log(errorThrown);
+              }
+>>>>>>> 30bdf8cbad173e62b95f7998ef0d4d8f4e8f6302
+        });
+
+    }
+
+        function handleLoginSpecificDisplay(username) {
+            if (username != null && username != '') {
+                $("#reviews-Display").show();
+            }
+
+        }
 
         function getRating(movieinfo){
 
