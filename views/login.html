@@ -179,13 +179,14 @@
             var admin = {};
             admin['username'] = username;
             admin['password'] = password;
+            var path = 'adminlogin';
 
             $.ajax({
               // Should be POST when we contact actual backend
               type: "POST",
               contentType: "application/json; charset=utf-8",
               dataType: "json",
-              url: "http://localhost:8080/login",
+              url: "http://localhost:8080/" + path,
               data:JSON.stringify(admin),
             }).then(function(data) {
               console.log(data);
