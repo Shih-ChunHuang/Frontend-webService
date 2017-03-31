@@ -101,28 +101,28 @@ function logoutUser() {
     //         });
     //     }
 
-        $("#actor-datasetGet").click(function (e) {
-            e.preventDefault();
-            console.log("testing");
+        // $("#actor-datasetGet").click(function (e) {
+        //     e.preventDefault();
+        //     console.log("testing");
 
-                $.ajax({
-                  dataType: "json",
-                  url: "http://localhost:8080/allactors",
-                  success: function(data){
+        //         $.ajax({
+        //           dataType: "json",
+        //           url: "http://localhost:8080/allactors",
+        //           success: function(data){
 
-                    console.log("testing inside ajax success");
-                    console.log(data);
+        //             console.log("testing inside ajax success");
+        //             console.log(data);
 
-                    generateTableActor(data);
+        //             generateTableActor(data);
 
-                  }
+        //           }
 
-                });
-            //     console.log("Logged in user:" + data)
-            //     return data;
-            //   }
-            // });
-        });
+        //         });
+        //     //     console.log("Logged in user:" + data)
+        //     //     return data;
+        //     //   }
+        //     // });
+        // });
 
 
 

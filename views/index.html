@@ -31,8 +31,11 @@
                             </ul>
                         </li>
                         
-                        <li><a href="login.html">Login or Register</a></li>
-                        <li><a href="index.html" id="logout">Logout</a></li>              
+                        <li><a href="login.html" id="login">Login or Register</a></li>
+                        <li><a href="login.html" id="logout">Logout</a></li>              
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="welcome">
+                
                     </ul>
 
                 </div>
@@ -56,11 +59,44 @@
         </div>
 
         <script type="text/javascript">
+
             $(document).ready(function() {
+
+                         $.ajax({
+
+                          url:'http://localhost:8080/userExist',
+                          success: function(loginData) {
+                            console.log("finished");
+                            console.log("login name: " + loginData);
+
+                            handleLoginSpecificDisplay(loginData);
+
+                          }, 
+
+                          error: function (textStatus, errorThrown) {
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                          }
+
+                        });
+
+       
+
                 $('#logout').click(function() {
                     logoutUser();
                 });
             })
+
+             function handleLoginSpecificDisplay(username) {
+                if (username != null && username != '') {
+                    $("#login").hide();
+                    $("#welcome").show();
+                    document.getElementById('welcome').innerHTML = "<li><strong>Hi! " + username + "</strong></li>";
+                 }else{
+                     $("#logout").hide();
+                }
+
+            }
 
         </script>
 

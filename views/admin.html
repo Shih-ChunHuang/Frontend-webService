@@ -37,11 +37,11 @@
                
                     <div class='form-group'>
                     	<label>Titles should be the same as the titles on the movie table</label>
-                        <input class="form-control" type="title" name="delete-target" placeholder="Movie Title" id="title"></input>
+                        <input class="form-control" type="title" name="delete-target" placeholder="Movie Title" maxlength="50" id="title"></input>
                     </div>
                     <div class='form-group'>
                     	<label>yyyy-mm-dd (e.g. 2017-03-10)</label>
-                        <input class="form-control" type="releasedate" name="delete-target" placeholder="Movie Release Date" id="releasedate"></input>
+                        <input class="form-control" type="releasedate" name="delete-target" placeholder="Movie Release Date" maxlength="10" id="releasedate"></input>
                     </div>
 
                     <div><button type="button" class="btn btn-primary" id="toDelete" style="margin-top: 2em;float: left;" >Delete Data</button></div>
@@ -75,13 +75,23 @@
             var title = $("#title").val();
             var releasedate = $("#releasedate").val();
 
+            var checkdate = isValidDate(releasedate);
+
+            console.log("Date format incorrect: " + checkdate);
+
+            
+
             if (title == "" || releasedate == ""){
 
                 alert("Please enter target movie infomation.");
                 return;
 
-            }else{
+            }else if (!checkdate){
 
+                alert("Please enter valid date format.");
+                return;
+
+            }else{
             
                 var path = title + "/" + releasedate;
 
@@ -133,6 +143,11 @@
         })
 
     })
+
+     function isValidDate(dateString) {
+              var regEx = /^\d{4}-\d{2}-\d{2}$/;
+              return dateString.match(regEx) != null;
+    }
 
      function generateTableMovieNoClick(data) {
         var columns = [];

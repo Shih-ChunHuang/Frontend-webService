@@ -32,8 +32,8 @@
                     </ul>
                 </li>
                 
-                <li><a href="login.html">Login or Register</a></li>
-                <li><a href="index.html" id="logout">Logout</a></li>
+                <li><a href="login.html" id="login">Login or Register</a></li>
+                <li><a href="login.html" id="logout">Logout</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" id="welcome">
                 
@@ -125,7 +125,9 @@
 
         function getLoggedInUser() {
             console.log("Called");
+
             var path = "userExist";
+
             $.ajax({
               url:'http://localhost:8080/' + path,
               success: function(loginData) {
@@ -147,9 +149,12 @@
         function handleLoginSpecificDisplay(username) {
             if (username != null && username != '') {
                 $("#reviews-Box").show();
+                $("#login").hide();
                 $("#welcome").show();
-                document.getElementById('welcome').innerHTML = "<li>Hi! " + username + "</li>";
-            }
+                document.getElementById('welcome').innerHTML =  "<li><strong>Hi! " + username + "</strong></li>";
+            }else{
+                     $("#logout").hide();
+                 }
 
         }
 
@@ -243,7 +248,7 @@
                             var userReview = {};
                             userReview['text'] = userText;
                             userReview['rating'] = parseInt(userRating);
-                            // userReview['accountName'] = "foobar";
+                            
                             userReview['title'] = movieTitle;
                             userReview['releaseDate'] = movieDate;
 

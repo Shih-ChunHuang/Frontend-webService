@@ -34,9 +34,10 @@
                     </ul>
                 </li>
                 
-                <li><a href="login.html">Login or Register</a></li>
-                <li><a href="index.html" id="logout" class='logout'>Logout</a></li>
+                <li><a href="login.html" id="login">Login or Register</a></li>
+                <li><a href="login.html" id="logout" class='logout'>Logout</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right" id="welcome"></ul>
         </div>
         <!--/.nav-collapse -->
     </div>
@@ -71,6 +72,56 @@
 </div>
 <script type="text/javascript">
     //Get Data in actor.html
+
+         $("#actor-datasetGet").click(function (e) {
+           
+            
+
+                $.ajax({
+                  dataType: "json",
+                  url: "http://localhost:8080/allactors",
+                  success: function(data){
+
+                   
+                    console.log(data);
+
+                    generateTableActor(data);
+
+                  }
+
+                });
+         
+        });
+
+        $.ajax({
+
+          url:'http://localhost:8080/userExist',
+          success: function(loginData) {
+            console.log("finished");
+            console.log("login name: " + loginData);
+
+            handleLoginSpecificDisplay(loginData);
+
+          }, 
+
+          error: function (textStatus, errorThrown) {
+            console.log(textStatus);
+            console.log(errorThrown);
+          }
+
+        });
+
+        
+         function handleLoginSpecificDisplay(username) {
+            if (username != null && username != '') {
+                $("#login").hide();
+                $("#welcome").show();
+                document.getElementById('welcome').innerHTML = "<li><strong>Hi! " + username + "</strong></li>";
+             }else{
+                     $("#logout").hide();
+            }
+
+        }
 
 
         $('#logout').click(function() {
@@ -124,20 +175,7 @@
                         console.log(data);
                         generateTableActor(data);
    
-                        // var jsonObj = $.parseJSON(JSON.stringify(data));
-                        // var html = '<table border="1">';
-                        // $.each(jsonObj, function(key, value){
-                        //     html += '<tr>';
-                        //     html += '<td>' + key + '</td>';
-                        //     html += '<td>' + value + '</td>';
-                        //     html += '</tr>';
-                        // });
-                        // html += '</table>';
-
-                        // $('#actor-dataDisplay').html(html);
-                                
-                        
-                
+                  
                     }
             
                 });

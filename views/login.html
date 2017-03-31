@@ -50,9 +50,10 @@
                     </ul>
                 </li>
                 
-                <li><a href="login.html">Login or Register</a></li>
-                <li><a href="index.html" id="logout">Logout</a></li>
+                <li><a href="login.html" id="login">Login or Register</a></li>
+                
             </ul>
+            
         </div>
         <!--/.nav-collapse -->
     </div>
@@ -74,10 +75,10 @@
               <div class="row">
                 <div class="col-lg-12">
                     <div class="form-group">
-                        <input type="text" name="username" id="username-input" tabindex="1" class="form-control username" placeholder="Username" value="">
+                        <input type="text" name="username" id="username-input" tabindex="1" class="form-control username" placeholder="Username" maxlength="25" value="">
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" id="password" tabindex="2" class="form-control password" placeholder="Password">
+                      <input type="password" name="password" id="password" tabindex="2" class="form-control password" placeholder="Password" maxlength="25">
                     </div>
                     <div class="form-group">
                       <div class="row">
@@ -128,9 +129,29 @@
 
     <script>
       $(document).ready(function() {
-        $('#logout').click(function() {
-            logoutUser();
-        });
+
+        $.ajax({
+
+              url:'http://localhost:8080/userExist',
+              success: function(loginData) {
+                console.log("finished");
+                console.log("login name: " + loginData);
+
+                handleLoginSpecificDisplay(loginData);
+
+              }, 
+
+              error: function (textStatus, errorThrown) {
+                console.log(textStatus);
+                console.log(errorThrown);
+              }
+
+            });
+
+         
+        // $('#logout').click(function() {
+        //     logoutUser();
+        // });
 
         $('#login-user-submit').click(function() {
             $('.login-fail').stop(true, true).fadeOut();
@@ -208,6 +229,15 @@
 
 
       });
+
+      function handleLoginSpecificDisplay(username) {
+                if (username != null && username != '') {
+                   
+                    $("#login").show();
+                    
+                 }
+
+        }
 
     </script>
 
