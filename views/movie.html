@@ -528,7 +528,18 @@
                     url:'http://localhost:8080/ratedbyall2/' + path,
                     success: function(data) {
 
-                        generateTableMovie(data);
+                        console.log(data);
+
+                        if (data.length > 0){
+                            generateTableMovie(data);
+                        }else{
+                            alert("No such a movie exist.");
+                            $("#movie-dataDisplay").empty();
+
+                            return;
+                        }
+
+                        
 
                        
                            
